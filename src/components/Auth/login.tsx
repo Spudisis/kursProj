@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import s from "../../pages/auth/auth.module.css";
 
-const Login = () => {
+const Login = ({ setData }: any) => {
   const id = React.useId();
   return (
     <>
@@ -22,7 +22,7 @@ const Login = () => {
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          console.log(values);
+          setData(values);
         }}
       >
         {({ isSubmitting }) => (
@@ -38,12 +38,9 @@ const Login = () => {
                 <Field type="password" name="password" id={id + "password"} placeholder="Пароль" />
                 <ErrorMessage name="password" component="div" className={s.errorMessage} />
               </div>
-              
             </div>
             <div className={s.buttons}>
-              <button type="submit" disabled={isSubmitting}>
-                Войти
-              </button>
+              <button type="submit">Войти</button>
             </div>
           </Form>
         )}

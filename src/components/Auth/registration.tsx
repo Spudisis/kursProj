@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import s from "../../pages/auth/auth.module.css";
 
-const Registation = () => {
+const Registation = ({ setData }: any) => {
   const id = React.useId();
   return (
     <>
@@ -15,8 +15,8 @@ const Registation = () => {
           } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
             errors.email = "Неправильный Email";
           }
-          if (values.password.length < 3) {
-            errors.password = "Пароль должен быть не менее 3-х символов";
+          if (values.password.length < 6) {
+            errors.password = "Пароль должен быть не менее 6-х символов";
           }
           if (values.password !== values.passwordRepeat) {
             errors.passwordRepeat = "Пароли не совпадают";
@@ -24,7 +24,7 @@ const Registation = () => {
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          console.log(values);
+          setData(values);
         }}
       >
         {({ isSubmitting }) => (
@@ -52,9 +52,7 @@ const Registation = () => {
               </div>
             </div>
             <div className={s.buttons}>
-              <button type="submit" disabled={isSubmitting}>
-                Зарегистрироваться
-              </button>
+              <button type="submit">Зарегистрироваться</button>
             </div>
           </Form>
         )}
