@@ -18,7 +18,9 @@ const Registation = () => {
           if (values.password.length < 3) {
             errors.password = "Пароль должен быть не менее 3-х символов";
           }
-
+          if (values.password !== values.passwordRepeat) {
+            errors.passwordRepeat = "Пароли не совпадают";
+          }
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
@@ -38,10 +40,20 @@ const Registation = () => {
                 <Field type="password" name="password" id={id + "password"} placeholder="Пароль" />
                 <ErrorMessage name="password" component="div" className={s.errorMessage} />
               </div>
+              <div className={s.inputBlock}>
+                <label htmlFor={id + "passwordRepeat"}>Repeat password</label>
+                <Field
+                  type="password"
+                  name="passwordRepeat"
+                  id={id + "passwordRepeat"}
+                  placeholder="Повторите пароль"
+                />
+                <ErrorMessage name="passwordRepeat" component="div" className={s.errorMessage} />
+              </div>
             </div>
             <div className={s.buttons}>
               <button type="submit" disabled={isSubmitting}>
-                Войти
+                Зарегистрироваться
               </button>
             </div>
           </Form>

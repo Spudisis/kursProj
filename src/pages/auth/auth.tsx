@@ -14,11 +14,11 @@ const Auth = () => {
           <img src={logo} alt="NN" />
           <div className={s.buttonsAuth}>
             <button className={statusAuth ? s.active : s.deactive} onClick={() => setStatusAuth(true)}>
-              Регистрация
+              Войти
             </button>
             /
             <button className={statusAuth ? s.deactive : s.active} onClick={() => setStatusAuth(false)}>
-              Войти
+              Регистрация
             </button>
           </div>
         </div>

@@ -15,8 +15,19 @@
   display: flex;
   justify-content: left;
 }
+h1:last-child {
+  display: none;
+}
 @media screen and (max-width: 1100px) {
   .name {
     font-size: 10px;
+  }
+}
+@media screen and (max-width: 560px) {
+  h1:first-child {
+    display: none;
+  }
+  h1:last-child {
+    display: block;
   }
 }

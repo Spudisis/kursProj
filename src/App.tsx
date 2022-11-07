@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import s from "./normalize.module.css";
 import Statement from "./pages/statement/statement";
 import Auth from "./pages/auth/auth";
+import { Profile } from "./pages/profile/profile";
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
         <div className={s.main}>
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/statement" element={<Statement />} />
+            <Route path="/statement/*" element={<Statement />} />
             <Route path="/authorization" element={<Auth />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>
         <Footer />

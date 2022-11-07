@@ -1,0 +1,25 @@
+.inactive {
+  color: gold;
+}
+.active {
+  color: white;
+}
+.activeProfile {
+  background-color: hsl(207, 47%, 43%);
+  padding: 0px 20px;
+  max-height: 5vh;
+  text-align: center;
+  line-height: 46px;
+  color: white;
+}
+.activeProfile:hover {
+  background-color: hsl(207, 62%, 56%);
+}
+.inactiveProfile {
+  background-color: hsl(207, 62%, 56%);
+  color: white;
+  padding: 0px 20px;
+  min-height: 5vh;
+  text-align: center;
+  line-height: 46px;
+}

@@ -7,7 +7,7 @@ const Login = () => {
   return (
     <>
       <Formik
-        initialValues={{ email: "", password: "", passwordRepeat: "" }}
+        initialValues={{ email: "", password: "" }}
         validate={(values) => {
           const errors: any = {};
           if (!values.email) {
@@ -18,9 +18,7 @@ const Login = () => {
           if (values.password.length < 3) {
             errors.password = "Пароль должен быть не менее 3-х символов";
           }
-          if (values.passwordRepeat !== values.password) {
-            errors.passwordRepeat = "Пароль не совпадает";
-          }
+
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
@@ -40,20 +38,11 @@ const Login = () => {
                 <Field type="password" name="password" id={id + "password"} placeholder="Пароль" />
                 <ErrorMessage name="password" component="div" className={s.errorMessage} />
               </div>
-              <div className={s.inputBlock}>
-                <label htmlFor={id + "passwordRepeat"}>Repeat password</label>
-                <Field
-                  type="password"
-                  name="passwordRepeat"
-                  id={id + "passwordRepeat"}
-                  placeholder="Повторите пароль"
-                />
-                <ErrorMessage name="passwordRepeat" component="div" className={s.errorMessage} />
-              </div>
+              
             </div>
             <div className={s.buttons}>
               <button type="submit" disabled={isSubmitting}>
-                Зарегистрироваться
+                Войти
               </button>
             </div>
           </Form>

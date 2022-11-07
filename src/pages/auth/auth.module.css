@@ -1,7 +1,6 @@
 .wrapper {
   min-height: 90vh;
   display: flex;
-
   align-items: center;
   justify-content: center;
 }
@@ -13,6 +12,7 @@
   height: 45vh;
   border-radius: 25px;
   padding: 20px 20px;
+  color: white;
 }
 .form {
   padding: 20px 0px 0px;
@@ -109,4 +109,16 @@
   border: none;
   outline: none;
   background-color: inherit;
+}
+
+@media screen and (max-width: 425px) {
+  .root {
+    width: 100%;
+  }
+  .inputBlock input {
+    width: 200px;
+  }
+  .wrapper {
+    background-color: hsl(217, 51%, 27%);
+  }
 }

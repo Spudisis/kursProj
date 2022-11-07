@@ -11,6 +11,7 @@ function Logo() {
         </div>
         <div className={s.name}>
           <h1>ЗАГС Нижегородской&nbsp;области</h1>
+          <h1>ЗАГС</h1>
         </div>
       </div>
     </NavLink>

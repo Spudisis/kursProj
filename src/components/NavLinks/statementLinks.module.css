@@ -1,0 +1,70 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.wrapper h2 {
+  font-size: 30px;
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
+.links {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+}
+.links a {
+  color: white;
+  min-width: 600px;
+  padding: 20px 0px;
+  background-color: hsl(207, 47%, 43%);
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.links a:hover {
+  animation-name: link;
+  animation-duration: 2s;
+  animation-delay: infinite;
+}
+
+@keyframes link {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+    background-color: hsl(207, 63%, 58%);
+  }
+  100% {
+    transform: scale(1);
+    background-color: hsl(207, 47%, 43%);
+  }
+}
+@keyframes linkFont {
+  0% {
+    font-size: 20px;
+  }
+  50% {
+    font-size: 25px;
+    background-color: hsl(207, 63%, 58%);
+  }
+  100% {
+    font-size: 20px;
+    background-color: hsl(207, 47%, 43%);
+  }
+}
+@media screen and (max-width: 630px) {
+  .links {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .links a {
+    min-width: 90%;
+  }
+  .links a:hover {
+    animation-name: linkFont;
+    animation-duration: 2s;
+    animation-delay: infinite;
+  }
+}
