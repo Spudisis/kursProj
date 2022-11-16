@@ -1,19 +1,46 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-const initialState = {
-  sale: false,
+type person = {
+  uid: string;
+  statusSite: boolean;
+  EmailUser: string;
 };
-export const dataSlice = createSlice({
-  name: "Slice",
+
+const initialState: person = {
+  uid: "",
+  statusSite: false,
+  EmailUser: "",
+};
+export const personSlice = createSlice({
+  name: "person",
   initialState,
   reducers: {
-    changeParamSale: (state) => {
-      state.sale = state.sale;
+    setPerson: (state, action: PayloadAction<string>) => {
+      state.uid = action.payload;
+    },
+    clearId: (state) => {
+      state.uid = "";
+    },
+
+    setStatusSite: (state, action: PayloadAction<boolean>) => {
+      if (state?.statusSite == action?.payload) {
+      } else state.statusSite = action.payload;
+    },
+    clearStatusSite: (state) => {
+      state.statusSite = false;
+    },
+    setEmailUser: (state, action: PayloadAction<string>) => {
+      state.EmailUser = action.payload;
+    },
+    clearEmailUser: (state) => {
+      state.EmailUser = "";
     },
   },
 });
+export const getUid = (state: RootState) => state.person;
+export const getStatusSite = (state: RootState) => state.person;
+export const getEmailUser = (state: RootState) => state.person;
+export const { setPerson, clearId, setStatusSite, clearStatusSite, setEmailUser, clearEmailUser } = personSlice.actions;
 
-export const { changeParamSale } = dataSlice.actions;
-
-export default dataSlice.reducer;
+export default personSlice.reducer;

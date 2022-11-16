@@ -3,7 +3,7 @@ body {
   padding: 0px;
   font-family: "Poppins", sans-serif;
   font-size: 300;
-  background: linear-gradient(rgba(9, 9, 9, 0.866), rgba(0, 0, 0, 0.811)), url("./assets/img/bgx.jpg");
+  background: white;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -27,4 +27,5 @@ a {
   max-width: 1170px;
   width: 100%;
   margin: 0 auto;
+  color: black;
 }

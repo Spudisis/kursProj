@@ -2,24 +2,25 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import s from "../statementTypes.module.css";
 
-const DeathSpec = ({ numberForm, status, info }: any) => {
+const DateVisited = ({ numberForm, status, info, setEnd }: any) => {
   const id = React.useId();
   return (
     <>
       <Formik
         initialValues={{
-          date: "",
+          dateVisited: "",
         }}
         validate={(values) => {
           const errors: any = {};
-          if (!values.date) {
-            errors.sex = "Обязательно к заполнению";
+          if (!values.dateVisited) {
+            errors.dateVisited = "Обязательно к заполнению";
           }
-          return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
           status(numberForm);
           info(values);
+          setEnd(true);
+          console.log(values);
         }}
       >
         {({ isSubmitting }) => (
@@ -27,13 +28,14 @@ const DeathSpec = ({ numberForm, status, info }: any) => {
             <div className={s.formMarried}>
               <div className={s.inputs}>
                 <div className={s.inputBlock}>
-                  <label htmlFor={id + "dateDeath"}>Дата смерти</label>
-                  <Field type="date" name="date" id={id + "dateDeath"} className={s.input} />
-                  <ErrorMessage name="date" component="div" className={s.errorMessage} />
+                  <label htmlFor={id + "dateVisited"}>Дата посещения</label>
+                  <Field type="date" name="dateVisited" id={id + "dateVisited"} className={s.input} />
+                  <ErrorMessage name="dateVisited" component="div" className={s.errorMessage} />
                 </div>
               </div>
             </div>
-            <button type="submit">Далее</button>
+
+            <button type="submit">Подать заявление</button>
           </Form>
         )}
       </Formik>
@@ -41,4 +43,4 @@ const DeathSpec = ({ numberForm, status, info }: any) => {
   );
 };
 
-export default DeathSpec;
+export default DateVisited;

@@ -7,7 +7,11 @@ import Registation from "../../components/Auth/registration";
 
 import { useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/config";
+import { setPerson } from "../../redux/slices/slice";
+import { useAppDispatch } from "../../redux/store";
+
 const Auth = () => {
+  const dispath = useAppDispatch();
   const [typeAuth, settypeAuth] = React.useState(false);
   const [styleWarning, setStyleWarning] = React.useState(s.warningHide);
 
@@ -32,6 +36,13 @@ const Auth = () => {
   }, [errorLog, errorReg]);
 
   React.useEffect(() => {
+    if (userLog?.user.uid) {
+      console.log(userLog.user.uid);
+      dispath(setPerson(userLog.user.uid));
+    } else if (userReg?.user.uid) {
+      console.log(userReg.user.uid);
+      dispath(setPerson(userReg.user.uid));
+    }
     if (userLog || userReg) {
       return navigation("/profile");
     }

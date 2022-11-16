@@ -6,17 +6,33 @@ import RedirectProfile from "../../../components/redirectProfile/redirectProfile
 
 import { ActZags } from "../../../components/typeStatement/ActZags";
 import BornSpec from "../../../components/typeStatement/FormsSpec/bornSpec";
-const Born = () => {
+
+import { uid } from "../../../redux/slices/types";
+import DateVisited from "../../../components/typeStatement/FormsSpec/dateVisited";
+const Born = ({ uid,  setTypeStatement, setDataObj }: uid) => {
   const [statusConfirm, setStatusConfirm] = React.useState(0); //какую форму показывать
   const [infoGeneral, setInfoGeneral] = React.useState({}); //объект с общей информацией
   const [infoPassport, setinfoPassport] = React.useState({}); //объект с данными паспорта
   const [infoSpec, setinfoSpec] = React.useState({}); //объект со спец информацией из данного заявления
   const [infoZags, setInfoZags] = React.useState({}); //объект с информацией о загсе
-  const informationStatement = { general: infoGeneral, passport: infoPassport, spec: infoSpec, zags: infoZags };
+  const [infoDateVisited, setInfoDateVisited] = React.useState({});
+  const informationStatement = {
+    general: infoGeneral,
+    passport: infoPassport,
+    spec: infoSpec,
+    zags: infoZags,
+    dateVisited: infoDateVisited,
+  };
   const [end, setEnd] = React.useState(false);
+
   React.useEffect(() => {
-    console.log(informationStatement);
-  }, [informationStatement]);
+    if (end) {
+      if (uid) {
+        setTypeStatement("Регистрация рождения");
+        setDataObj(informationStatement);
+      }
+    }
+  }, [end]);
   return (
     <>
       <div className={statusConfirm === 0 ? s.back : s.hide}>
@@ -53,11 +69,17 @@ const Born = () => {
         </button>
       </div>
       <div className={statusConfirm === 3 ? s.back : s.hide}>
-        <BornSpec
-          numberForm={4}
+        <BornSpec numberForm={4} status={(n: number) => setStatusConfirm(n)} info={(n: any) => setinfoSpec(n)} />
+        <button className={s.button} onClick={() => setStatusConfirm(statusConfirm - 1)}>
+          Вернуться
+        </button>
+      </div>
+      <div className={statusConfirm === 4 ? s.back : s.hide}>
+        <DateVisited
+          numberForm={5}
           status={(n: number) => setStatusConfirm(n)}
-          info={(n: any) => setinfoSpec(n)}
-          end={(n: boolean) => setEnd(n)}
+          info={(n: any) => setInfoDateVisited(n)}
+          setEnd={(n: boolean) => setEnd(n)}
         />
         <button className={s.button} onClick={() => setStatusConfirm(statusConfirm - 1)}>
           Вернуться

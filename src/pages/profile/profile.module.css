@@ -9,6 +9,7 @@ summary {
   padding: 10px 0px 10px 20px;
   background-color: hsl(207, 62%, 56%);
   cursor: pointer;
+  color: white;
 }
 summary:hover {
   color: gold;

@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import s from "../statementTypes.module.css";
 
-const MarriageSpec = ({ status, info, numberForm, setEnd }: any) => {
+const MarriageSpec = ({ status, info, numberForm }: any) => {
   const id = React.useId();
   return (
     <>
@@ -31,7 +31,7 @@ const MarriageSpec = ({ status, info, numberForm, setEnd }: any) => {
         }}
         onSubmit={(values, { setSubmitting }) => {
           status(numberForm);
-          setEnd(true);
+
           info(values);
         }}
       >
@@ -66,7 +66,7 @@ const MarriageSpec = ({ status, info, numberForm, setEnd }: any) => {
               </div>
             </div>
 
-            <button type="submit">Подать заявление</button>
+            <button type="submit">Далее</button>
           </Form>
         )}
       </Formik>

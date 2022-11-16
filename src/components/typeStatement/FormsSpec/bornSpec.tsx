@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import s from "../statementTypes.module.css";
 
-const BornSpec = ({ end, numberForm, status, info }: any) => {
+const BornSpec = ({ numberForm, status, info }: any) => {
   const id = React.useId();
   return (
     <>
@@ -34,7 +34,7 @@ const BornSpec = ({ end, numberForm, status, info }: any) => {
         onSubmit={(values, { setSubmitting }) => {
           status(numberForm);
           info(values);
-          end(true);
+
           console.log(values);
         }}
       >
@@ -91,7 +91,7 @@ const BornSpec = ({ end, numberForm, status, info }: any) => {
               </div>
             </div>
 
-            <button type="submit">Подать заявление</button>
+            <button type="submit">Далее</button>
           </Form>
         )}
       </Formik>
