@@ -4,7 +4,7 @@ import s from "./redirectProfile.module.css";
 const RedirectProfile = () => {
   const navigation = useNavigate();
   const redirect = () => {
-    return navigation("/profile");
+    return navigation("kursProj/profile");
   };
   return (
     <div className={s.redirectProfile}>

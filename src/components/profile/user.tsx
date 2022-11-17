@@ -83,7 +83,7 @@ export const User = () => {
         ) : (
           <div className={s.statementsClear}>
             <h3>Список заявок пуст</h3>
-            <button className={s.sendStatement} onClick={() => navigation("/statement")}>
+            <button className={s.sendStatement} onClick={() => navigation("kursProj/statement")}>
               Подать заявление
             </button>
           </div>

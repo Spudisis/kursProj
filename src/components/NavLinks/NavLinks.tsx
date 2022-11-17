@@ -8,29 +8,32 @@ const NavLinks = () => {
   return (
     <>
       {user ? (
-        <NavLink to={"/statement"} className={({ isActive }) => (!isActive ? s.active : s.inactive)}>
+        <NavLink to={"kursProj/statement"} className={({ isActive }) => (!isActive ? s.active : s.inactive)}>
           Подать заявление
         </NavLink>
       ) : (
-        <NavLink to={"/authorization"} className={s.active}>
+        <NavLink to={"kursProj/authorization"} className={s.active}>
           Подать заявление
         </NavLink>
       )}
-      <NavLink to="/guide" className={({ isActive }) => (!isActive ? s.active : s.inactive)}>
+      <NavLink to="kursProj/guide" className={({ isActive }) => (!isActive ? s.active : s.inactive)}>
         Управление
       </NavLink>
-      <NavLink to="/press-center" className={({ isActive }) => (!isActive ? s.active : s.inactive)}>
+      <NavLink to="kursProj/press-center" className={({ isActive }) => (!isActive ? s.active : s.inactive)}>
         Пресс-центр
       </NavLink>
-      <NavLink to="/activity" className={({ isActive }) => (!isActive ? s.active : s.inactive)}>
+      <NavLink to="kursProj/activity" className={({ isActive }) => (!isActive ? s.active : s.inactive)}>
         Деятельность
       </NavLink>
       {!user ? (
-        <NavLink to="/authorization" className={({ isActive }) => (!isActive ? s.activeProfile : s.inactiveProfile)}>
+        <NavLink
+          to="kursProj/authorization"
+          className={({ isActive }) => (!isActive ? s.activeProfile : s.inactiveProfile)}
+        >
           Войти
         </NavLink>
       ) : (
-        <NavLink to="/profile" className={({ isActive }) => (!isActive ? s.activeProfile : s.inactiveProfile)}>
+        <NavLink to="kursProj/profile" className={({ isActive }) => (!isActive ? s.activeProfile : s.inactiveProfile)}>
           Профиль
         </NavLink>
       )}
