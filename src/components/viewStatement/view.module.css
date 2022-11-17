@@ -1,0 +1,23 @@
+.block {
+  display: flex;
+  padding: 10px 0px;
+  border: 1px solid hsl(207, 90%, 19%);
+  background-color: hsl(207, 62%, 56%);
+  color: white;
+  width: 100%;
+  font-size: 20px;
+  justify-content: center;
+}
+.block p {
+  margin: 0px;
+}
+.block b {
+  font-size: 25px;
+}
+.twinBlock {
+  display: flex;
+  justify-content: space-around;
+}
+.twin {
+  width: 100%;
+}

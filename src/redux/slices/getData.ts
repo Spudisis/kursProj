@@ -3,6 +3,8 @@ import { RootState } from "../store";
 
 const initialState: any = {
   data: [],
+  view: false,
+  viewData: {},
 };
 export const dataSlice = createSlice({
   name: "data",
@@ -20,11 +22,18 @@ export const dataSlice = createSlice({
     },
     clearData: (state) => {
       state.data = [];
+      state.viewData = {};
+    },
+    viewData: (state, action: PayloadAction<any>) => {
+      state.viewData = action.payload;
+    },
+    viewSet: (state, action: PayloadAction<boolean>) => {
+      state.view = action.payload;
     },
   },
 });
 export const getdata = (state: any) => state.data;
 
-export const { setData, deleteData, clearData } = dataSlice.actions;
+export const { setData, deleteData, clearData, viewSet, viewData } = dataSlice.actions;
 
 export default dataSlice.reducer;

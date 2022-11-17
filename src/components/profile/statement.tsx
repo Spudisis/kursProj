@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { changeStatementStatus } from "../../firebase/changeStatusStatement";
-import { deleteData } from "../../redux/slices/getData";
+import { View } from "../../pages/viewStatement/view";
+import { deleteData, getdata, viewData, viewSet } from "../../redux/slices/getData";
 import { getStatusSite } from "../../redux/slices/slice";
 import { changeDataUsers } from "../../redux/slices/superUser";
 import { useAppDispatch } from "../../redux/store";
@@ -32,6 +33,9 @@ export const StatementProfile = ({
 }: stat) => {
   const [classStat, setClassStat] = React.useState(false);
   const [changeStat, setChangeStat] = React.useState(false);
+
+  const [viewStat, setViewStat] = React.useState(false);
+
   const statusStatement = true;
   const dispatch = useAppDispatch();
   let { statusSite } = useSelector(getStatusSite);
@@ -54,6 +58,15 @@ export const StatementProfile = ({
 
     dispatch(changeDataUsers({ id, status, typeList }));
   };
+
+  React.useEffect(() => {
+    dispatch(viewSet(viewStat));
+    dispatch(viewData({ elem, type }));
+  }, [viewStat]);
+  const viewStatement = () => {
+    setViewStat(!viewStat);
+  };
+
   return (
     <div className={s.statement}>
       <div className={s.number}>Заявка № {number}</div>
@@ -64,7 +77,9 @@ export const StatementProfile = ({
         <div>Дата посещения: {dateVisited}</div>
       </div>
       <div className={`${s.buttons} + "" + ${s.buttonSelect}`}>
-        <button className={s.button}>Посмотреть заявку</button>
+        <button className={s.button} onClick={() => viewStatement()}>
+          Посмотреть заявку
+        </button>
         {!user && status !== "В рассмотрении" && status !== "Одобрено" && status !== "Отказано" ? (
           <button className={s.button} onClick={() => setClassStat(true)}>
             Отменить заявку

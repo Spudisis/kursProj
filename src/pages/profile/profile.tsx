@@ -6,19 +6,21 @@ import { StatementProfile } from "../../components/profile/statement";
 import { SuperUser } from "../../components/profile/superUser";
 import { User } from "../../components/profile/user";
 import { auth } from "../../firebase/config";
-import { clearData } from "../../redux/slices/getData";
+import { clearData, getdata } from "../../redux/slices/getData";
 import { clearEmailUser, clearId, clearStatusSite } from "../../redux/slices/slice";
 import { getStatusSite } from "../../redux/slices/slice";
 import { clearDataUsers } from "../../redux/slices/superUser";
 import { useAppDispatch } from "../../redux/store";
+import { View } from "../viewStatement/view";
 import s from "./profile.module.css";
 
 export const Profile = () => {
   const navigation = useNavigate();
   const dispatch = useAppDispatch();
   let { statusSite } = useSelector(getStatusSite);
+  let { viewData, view } = useSelector(getdata);
+  const [loginRootStatus, setLoginRootStatus] = React.useState({});
 
-  const [loginRootStatus, setLoginRootStatus] = React.useState(false);
   const logout = () => {
     signOut(auth);
     dispatch(clearData());
@@ -38,7 +40,7 @@ export const Profile = () => {
         <h2>Личный кабинет</h2>
       </div>
       {loginRootStatus ? <SuperUser /> : <User />}
-
+      {view && <View type={viewData.type} statement={viewData.elem} />}
       <div className={s.buttons}>
         {!loginRootStatus && <button>Редактировать личные данные</button>}
         <button onClick={() => logout()}>Выйти из профиля</button>
