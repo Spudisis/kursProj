@@ -36,10 +36,10 @@ function App() {
         <Header />
         <div className={s.main}>
           <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/statement/*" element={<Statement />} />
-            <Route path="/authorization" element={<Auth />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="kursProj/" element={<Main />} />
+            <Route path="kursProj/statement/*" element={<Statement />} />
+            <Route path="kursProj/authorization" element={<Auth />} />
+            <Route path="kursProj/profile" element={<Profile />} />
           </Routes>
         </div>
         <Footer />
