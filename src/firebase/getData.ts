@@ -1,4 +1,4 @@
-import { setData } from "../redux/slices/getData";
+import { addData, setData } from "../redux/slices/getData";
 import { setStatusSite } from "../redux/slices/slice";
 import { useAppDispatch } from "../redux/store";
 import { auth } from "./config";
@@ -12,13 +12,11 @@ export const getDataDB = async (uid: string, dispatch: any) => {
       if (querySnapshot) {
         const a = querySnapshot.data();
         const b = a?.stat;
-        dispatch(setStatusSite(a?.status));
+
         console.log(uid);
-        console.log(a?.status);
+        dispatch(setStatusSite(a?.status)); //диспатчим стутс доступа
         if (Object.keys(b).length !== 0) {
-          b.forEach((elem: any) => {
-            dispatch(setData(elem));
-          });
+          dispatch(addData(b));
         }
       }
     });

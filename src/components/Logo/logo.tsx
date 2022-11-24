@@ -4,7 +4,7 @@ import emblem from "../../assets/img/emblem.png";
 
 function Logo() {
   return (
-    <NavLink to="/">
+    <NavLink to="kursProj/">
       <div className={s.place}>
         <div>
           <img src={emblem} alt="NN" className={s.logo} />

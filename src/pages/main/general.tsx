@@ -1,4 +1,5 @@
 import React from "react";
+import Banners from "../../components/main/banners";
 import { UsefulLinks } from "../../components/main/usefulLinks";
 import s from "./general.module.css";
 const Main = () => {
@@ -7,7 +8,9 @@ const Main = () => {
       <section>
         <UsefulLinks />
       </section>
-      <section>infa</section>
+      <section>
+        <Banners />
+      </section>
       <section>infa</section>
     </div>
   );

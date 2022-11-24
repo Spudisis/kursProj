@@ -7,8 +7,7 @@ import { getdata } from "../../redux/slices/getData";
 import { getEmailUser, getStatusSite, getUid } from "../../redux/slices/slice";
 import { StatementProfile } from "./statement";
 
-export const User = () => {
-  const { data } = useSelector(getdata);
+export const User = ({ data }: any) => {
   const { uid } = useSelector(getUid);
   const { EmailUser } = useSelector(getEmailUser);
   const { statusSite } = useSelector(getStatusSite);
@@ -17,10 +16,8 @@ export const User = () => {
 
   const [pagination, setPagination] = React.useState(6);
   React.useEffect(() => {
-    if (data.length !== 0) {
-      console.log(data);
-      addStatement(uid, data, statusSite);
-    }
+    console.log(data);
+    addStatement(uid, data, statusSite); // при изменеии заявки добавляется в файрбейз
   }, [data]);
 
   const changePaginationStr = (n: string) => {
@@ -50,7 +47,7 @@ export const User = () => {
           </div>
         </div>
       </details>
-      <details>
+      <details open>
         <summary>Мои заявления</summary>
         {data.length !== 0 ? (
           <>
@@ -83,7 +80,7 @@ export const User = () => {
         ) : (
           <div className={s.statementsClear}>
             <h3>Список заявок пуст</h3>
-            <button className={s.sendStatement} onClick={() => navigation("kursProj/statement")}>
+            <button className={s.sendStatement} onClick={() => navigation("/statement")}>
               Подать заявление
             </button>
           </div>

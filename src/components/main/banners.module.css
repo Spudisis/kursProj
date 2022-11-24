@@ -1,0 +1,19 @@
+.nameBlock {
+  margin-top: 40px;
+  font-size: 30px;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.listItems {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.listItems div {
+  margin-bottom: 20px;
+}
+.listItems div img {
+  width: 100%;
+}

@@ -1,10 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import s from "./redirectProfile.module.css";
+import { Link } from "react-router-dom";
 const RedirectProfile = () => {
   const navigation = useNavigate();
   const redirect = () => {
-    return navigation("kursProj/profile");
+    console.log("a");
+    return navigation("/kursProj/profile");
   };
   return (
     <div className={s.redirectProfile}>

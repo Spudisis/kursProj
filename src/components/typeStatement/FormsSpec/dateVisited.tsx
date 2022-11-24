@@ -12,8 +12,7 @@ const DateVisited = ({ numberForm, status, info, setEnd }: any) => {
         }}
         validate={(values) => {
           const errors: any = {};
-          if (!values.dateVisited) {
-            
+          if (!values.dateVisited || values.dateVisited.length === 0) {
             errors.dateVisited = "Обязательно к заполнению";
           }
         }}

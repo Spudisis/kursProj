@@ -4,6 +4,7 @@
   background-color: white;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 summary {
   padding: 10px 0px 10px 20px;

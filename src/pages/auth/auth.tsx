@@ -44,7 +44,7 @@ const Auth = () => {
       dispath(setPerson(userReg.user.uid));
     }
     if (userLog || userReg) {
-      return navigation("/profile");
+      return navigation("/kursProj/profile");
     }
   }, [userReg, userLog]);
 

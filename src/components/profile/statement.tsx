@@ -1,9 +1,11 @@
+import { getDownloadURL, listAll, ref } from "firebase/storage";
 import React from "react";
 import { useSelector } from "react-redux";
 import { changeStatementStatus } from "../../firebase/changeStatusStatement";
+import { storage } from "../../firebase/config";
 import { View } from "../../pages/viewStatement/view";
 import { deleteData, getdata, viewData, viewSet } from "../../redux/slices/getData";
-import { getStatusSite } from "../../redux/slices/slice";
+import { getStatusSite, getUid } from "../../redux/slices/slice";
 import { changeDataUsers } from "../../redux/slices/superUser";
 import { useAppDispatch } from "../../redux/store";
 import s from "./statement.module.css";
@@ -33,7 +35,7 @@ export const StatementProfile = ({
 }: stat) => {
   const [classStat, setClassStat] = React.useState(false);
   const [changeStat, setChangeStat] = React.useState(false);
-
+  const { uid } = useSelector(getUid);
   const [viewStat, setViewStat] = React.useState(false);
 
   const statusStatement = true;
@@ -43,7 +45,7 @@ export const StatementProfile = ({
   const deleteStatement = (id: number) => {
     dispatch(deleteData(id));
   };
-
+  const [ImageCheck, setImageCheck] = React.useState("");
   const changeStatusStatement = (n: number) => {
     setChangeStat(false);
     let status: string;
@@ -54,9 +56,10 @@ export const StatementProfile = ({
       : n === 2
       ? (status = "Отказано")
       : (status = "Одобрено");
-    changeStatementStatus(docName, statusSite, id, status);
 
     dispatch(changeDataUsers({ id, status, typeList }));
+    console.log("aa");
+    changeStatementStatus(docName, statusSite, id, status);
   };
 
   React.useEffect(() => {
@@ -66,7 +69,32 @@ export const StatementProfile = ({
   const viewStatement = () => {
     setViewStat(!viewStat);
   };
+  const displayImage = async (name: any) => {
+    let idPerson = uid;
+    if (statusSite) {
+      idPerson = docName;
+    }
+    const listRef = ref(storage, `docs/${idPerson}/`);
+    await listAll(listRef)
+      .then((res) => {
+        res.items.forEach((itemRef) => {
+          console.log(itemRef.name);
+          if (itemRef.name === name) {
+            console.log(itemRef.name, name);
+            getDownloadURL(itemRef).then((getURL) => {
+              console.log(getURL);
 
+              setImageCheck(getURL);
+            });
+          }
+        });
+      })
+      .catch((error) => {});
+  };
+  React.useEffect(() => {
+    console.log(elem.spec.name);
+    elem.spec.name && displayImage(elem.spec.name);
+  }, []);
   return (
     <div className={s.statement}>
       <div className={s.number}>Заявка № {number}</div>
@@ -75,6 +103,14 @@ export const StatementProfile = ({
         <div>Статус рассмотрения: {status}</div>
         <div>Заявка типа: {type}</div>
         <div>Дата посещения: {dateVisited}</div>
+        {elem.spec.name && (
+          <div>
+            Файл:{" "}
+            <a href={ImageCheck} target="_blank">
+              Открыть
+            </a>{" "}
+          </div>
+        )}
       </div>
       <div className={`${s.buttons} + "" + ${s.buttonSelect}`}>
         <button className={s.button} onClick={() => viewStatement()}>

@@ -3,13 +3,13 @@ import { RootState } from "../store";
 
 type person = {
   uid: string;
-  statusSite: boolean;
+  statusSite: any;
   EmailUser: string;
 };
 
 const initialState: person = {
   uid: "",
-  statusSite: false,
+  statusSite: "",
   EmailUser: "",
 };
 export const personSlice = createSlice({
@@ -24,11 +24,10 @@ export const personSlice = createSlice({
     },
 
     setStatusSite: (state, action: PayloadAction<boolean>) => {
-      if (state?.statusSite == action?.payload) {
-      } else state.statusSite = action.payload;
+      state.statusSite = action.payload;
     },
     clearStatusSite: (state) => {
-      state.statusSite = false;
+      state.statusSite = "";
     },
     setEmailUser: (state, action: PayloadAction<string>) => {
       state.EmailUser = action.payload;

@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: any = {
-  statementsUsers: [],
-  checkStatementsUsers: [],
+  statementsUsers: [], //данные заявок ожидается рассмотрение
+  checkStatementsUsers: [], //данные заявок в рассмотрении
 };
 export const dataSlice = createSlice({
   name: "statementsUsers",
@@ -17,7 +17,8 @@ export const dataSlice = createSlice({
     changeDataUsers: (state, action: PayloadAction<any>) => {
       if (action.payload.typeList === "statement") {
         let a: any = [];
-        const reduxMas = state.statementsUsers.slice(0);
+        let reduxMas = state.statementsUsers.slice(0);
+
         reduxMas.forEach((elem: any) => {
           if (elem.id === action.payload.id) {
             elem.status = action.payload.status;
@@ -25,30 +26,43 @@ export const dataSlice = createSlice({
           }
           if (elem.status === "В рассмотрении") {
             state.checkStatementsUsers.push(elem);
-          } else if (action.payload.status !== "Одобрено" && action.payload.status !== "Отказано") {
+          } else {
             console.log(action.payload.status);
             a.push(elem);
-          } else {
           }
         });
+
+        console.log(a);
         state.statementsUsers = a;
-      } else if (action.payload.typeList === "statementCheck") {
+      }
+      if (action.payload.typeList === "statementCheck") {
         let b: any = [];
         const reduxMax2 = state.checkStatementsUsers.slice(0);
-        reduxMax2.forEach((elem: any) => {
-          if (elem.id === action.payload.id) {
-            elem.status = action.payload.status;
-            console.log(elem.status);
-          }
-          if (elem.status === "Ожидается рассмотрение") {
-            state.statementsUsers.push(elem);
-          } else if (action.payload.status !== "Одобрено" && action.payload.status !== "Отказано") {
-            console.log(action.payload.status);
-            b.push(elem);
-          } else {
-          }
-        });
-        state.checkStatementsUsers = b;
+        if (action.payload.status === "Одобрено" || action.payload.status === "Отказано") {
+          reduxMax2.forEach((elem: any) => {
+            if (elem.id === action.payload.id) {
+              elem.status = action.payload.status;
+              console.log(elem.status);
+            }
+          });
+          reduxMax2.filter((elem: any) => elem.status !== "Одобрено" || "Отказано");
+          state.checkStatementsUsers = reduxMax2;
+        } else {
+          reduxMax2.forEach((elem: any) => {
+            if (elem.id === action.payload.id) {
+              elem.status = action.payload.status;
+              console.log(elem.status);
+            }
+            if (elem.status === "Ожидается рассмотрение") {
+              state.statementsUsers.push(elem);
+            } else {
+              console.log(action.payload.status);
+              b.push(elem);
+            }
+          });
+          console.log(b);
+          state.checkStatementsUsers = b;
+        }
       }
     },
 

@@ -2,6 +2,7 @@ import { signOut } from "firebase/auth";
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Loader } from "../../components/loader/loader";
 import { StatementProfile } from "../../components/profile/statement";
 import { SuperUser } from "../../components/profile/superUser";
 import { User } from "../../components/profile/user";
@@ -19,8 +20,7 @@ export const Profile = () => {
   const dispatch = useAppDispatch();
   let { statusSite } = useSelector(getStatusSite);
   let { viewData, view } = useSelector(getdata);
-  const [loginRootStatus, setLoginRootStatus] = React.useState({});
-
+  const { data } = useSelector(getdata);
   const logout = () => {
     signOut(auth);
     dispatch(clearData());
@@ -28,23 +28,28 @@ export const Profile = () => {
     dispatch(clearStatusSite());
     dispatch(clearDataUsers());
     dispatch(clearEmailUser());
-    return navigation("/");
+    return navigation("/kursProj/authorization");
   };
 
-  React.useEffect(() => {
-    setLoginRootStatus(statusSite);
-  }, [statusSite]);
   return (
     <div className={s.root}>
-      <div className={s.pageInfo}>
-        <h2>Личный кабинет</h2>
-      </div>
-      {loginRootStatus ? <SuperUser /> : <User />}
-      {view && <View type={viewData.type} statement={viewData.elem} />}
-      <div className={s.buttons}>
-        {!loginRootStatus && <button>Редактировать личные данные</button>}
-        <button onClick={() => logout()}>Выйти из профиля</button>
-      </div>
+      {statusSite !== "" ? (
+        <>
+          <div>
+            <div className={s.pageInfo}>
+              <h2>Личный кабинет</h2>
+            </div>
+            {statusSite ? <SuperUser /> : <User data={data} />}
+            {view && <View type={viewData.type} statement={viewData.elem} />}
+          </div>
+          <div className={s.buttons}>
+            {!statusSite && <button>Редактировать личные данные</button>}
+            <button onClick={() => logout()}>Выйти из профиля</button>
+          </div>
+        </>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };

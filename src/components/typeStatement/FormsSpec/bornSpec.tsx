@@ -1,9 +1,15 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import s from "../statementTypes.module.css";
-
+import { UploadImg } from "../../../firebase/addFile";
+import { useSelector } from "react-redux";
+import { getUid } from "../../../redux/slices/slice";
+import { v4 as uuidv4 } from "uuid";
 const BornSpec = ({ numberForm, status, info }: any) => {
   const id = React.useId();
+  const { uid } = useSelector(getUid);
+  const [fileUpload, setFileUpload] = React.useState("" as any);
+
   return (
     <>
       <Formik
@@ -11,6 +17,7 @@ const BornSpec = ({ numberForm, status, info }: any) => {
           sex: "",
           dateBorn: "",
           FIO: "",
+          fileBorn: "",
           marriedAct: "",
           marriedDate: "",
           marriedNamePlace: "",
@@ -29,12 +36,20 @@ const BornSpec = ({ numberForm, status, info }: any) => {
           if (!values.FIO) {
             errors.FIO = "Обязательно к заполнению";
           }
+
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={(values, { setSubmitting, setFieldValue }) => {
           status(numberForm);
-          info(values);
 
+          let { name } = fileUpload;
+          const randId = Math.floor(Math.random() * (99999999 - 10000000) + 10000000);
+          // name = randId + name;
+
+          UploadImg({ fileUpload, uid });
+          console.log(values);
+          console.log({ name, ...values });
+          info({ name, ...values });
           console.log(values);
         }}
       >
@@ -64,6 +79,18 @@ const BornSpec = ({ numberForm, status, info }: any) => {
                   <label htmlFor={id + "FIO"}>Фамилия Имя Отчество</label>
                   <Field type="text" name="FIO" id={id + "FIO"} placeholder="ФИО" className={s.input} />
                   <ErrorMessage name="FIO" component="div" className={s.errorMessage} />
+                </div>
+                <div className={s.inputBlock}>
+                  <label htmlFor={id + "fileBorn"}>Свидетельство рождения ребенка</label>
+                  <Field
+                    type="file"
+                    name="fileBorn"
+                    id={id + "fileBorn"}
+                    placeholder="ФИО"
+                    className={s.input}
+                    onChange={(e: any) => setFileUpload(e.target.files[0])}
+                  />
+                  <ErrorMessage name="fileBorn" component="div" className={s.errorMessage} />
                 </div>
 
                 <h2>Свидетельство об установлении отцовства</h2>

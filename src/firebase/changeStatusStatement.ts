@@ -24,6 +24,7 @@ export const changeStatementStatus = async (uid: any, statusSite: boolean, id: n
         }
       }
     });
+    console.log("изменил");
     addStatement(uid, mas, statusSite);
   }
 };

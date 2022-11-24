@@ -13,6 +13,9 @@ export const dataSlice = createSlice({
     setData: (state, action: PayloadAction<any>) => {
       state.data.push(action.payload);
     },
+    addData: (state, action: PayloadAction<any>) => {
+      state.data = action.payload;
+    },
     deleteData: (state, action: PayloadAction<number>) => {
       if (state.data) {
         state.data = state.data.filter((elem: any) => {
@@ -34,6 +37,6 @@ export const dataSlice = createSlice({
 });
 export const getdata = (state: any) => state.data;
 
-export const { setData, deleteData, clearData, viewSet, viewData } = dataSlice.actions;
+export const { setData, deleteData, clearData, viewSet, viewData, addData } = dataSlice.actions;
 
 export default dataSlice.reducer;
