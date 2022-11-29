@@ -1,5 +1,5 @@
 import React from "react";
-import RedirectProfile from "../../../components/redirectProfile/redirectProfile";
+import RedirectProfile from "../../../components/redirectProfile";
 import DateVisited from "../../../components/typeStatement/FormsSpec/dateVisited";
 import DeathSpec from "../../../components/typeStatement/FormsSpec/deathSpec";
 import GeneralInfo from "../../../components/typeStatement/generalInfo";
@@ -8,7 +8,7 @@ import PassportInfo from "../../../components/typeStatement/passportInfo";
 import { uid } from "../../../redux/slices/types";
 import s from "../marriage/marriage.module.css";
 
-export const Death = ({ uid,  setTypeStatement, setDataObj }: uid) => {
+export const Death = ({ uid, setTypeStatement, setDataObj }: uid) => {
   const [statusConfirm, setStatusConfirm] = React.useState(0); //какую форму показывать
   const [infoGeneral, setInfoGeneral] = React.useState({}); //объект с общей информацией
   const [infoPassport, setinfoPassport] = React.useState({}); //объект с данными паспорта

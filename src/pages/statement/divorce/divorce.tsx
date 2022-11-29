@@ -2,7 +2,7 @@ import React from "react";
 import s from "../marriage/marriage.module.css";
 import GeneralInfo from "../../../components/typeStatement/generalInfo";
 import PassportInfo from "../../../components/typeStatement/passportInfo";
-import RedirectProfile from "../../../components/redirectProfile/redirectProfile";
+import RedirectProfile from "../../../components/redirectProfile";
 import { ActZags } from "../../../components/typeStatement/ActZags";
 import { DivorceSpec } from "../../../components/typeStatement/FormsSpec/divorce";
 
@@ -10,7 +10,7 @@ import { uid } from "../../../redux/slices/types";
 import { useSelector } from "react-redux";
 import DateVisited from "../../../components/typeStatement/FormsSpec/dateVisited";
 
-const Divorce = ({ uid,  setDataObj, setTypeStatement }: uid) => {
+const Divorce = ({ uid, setDataObj, setTypeStatement }: uid) => {
   const [statusConfirm, setStatusConfirm] = React.useState(0); //какую форму показывать
   const [infoGeneral, setInfoGeneral] = React.useState({}); //объект с общей информацией
   const [infoPassport, setinfoPassport] = React.useState({}); //объект с данными паспорта

@@ -1,6 +1,11 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import s from "../../pages/auth/auth.module.css";
+
+import { FormBlock } from "../../componentStyled/Form/Form";
+import { Window } from "../../componentStyled/window";
+import { InputBlockDiv } from "../../componentStyled/Form/InputBlock";
+import { ButtonGeneral } from "../../componentStyled/button";
+import { BlockButtons } from "../../componentStyled/Form/blockButtons";
 
 const Registation = ({ setData }: any) => {
   const id = React.useId();
@@ -28,32 +33,34 @@ const Registation = ({ setData }: any) => {
         }}
       >
         {({ isSubmitting }) => (
-          <Form className={s.form}>
-            <div className={s.inputs}>
-              <div className={s.inputBlock}>
-                <label htmlFor={id + "email"}>Email</label>
-                <Field type="email" name="email" id={id + "email"} placeholder="Логин" />
-                <ErrorMessage name="email" component="div" className={s.errorMessage} />
-              </div>
-              <div className={s.inputBlock}>
-                <label htmlFor={id + "password"}>Password</label>
-                <Field type="password" name="password" id={id + "password"} placeholder="Пароль" />
-                <ErrorMessage name="password" component="div" className={s.errorMessage} />
-              </div>
-              <div className={s.inputBlock}>
-                <label htmlFor={id + "passwordRepeat"}>Repeat password</label>
-                <Field
-                  type="password"
-                  name="passwordRepeat"
-                  id={id + "passwordRepeat"}
-                  placeholder="Повторите пароль"
-                />
-                <ErrorMessage name="passwordRepeat" component="div" className={s.errorMessage} />
-              </div>
-            </div>
-            <div className={s.buttons}>
-              <button type="submit">Зарегистрироваться</button>
-            </div>
+          <Form>
+            <FormBlock>
+              <Window direction={"column"} height="auto" justify="stretch">
+                <InputBlockDiv auth>
+                  <label htmlFor={id + "email"}>Email</label>
+                  <Field type="email" name="email" id={id + "email"} placeholder="Логин" />
+                  <ErrorMessage name="email" component="div" />
+                </InputBlockDiv>
+                <InputBlockDiv auth>
+                  <label htmlFor={id + "password"}>Password</label>
+                  <Field type="password" name="password" id={id + "password"} placeholder="Пароль" />
+                  <ErrorMessage name="password" component="div" />
+                </InputBlockDiv>
+                <InputBlockDiv auth>
+                  <label htmlFor={id + "passwordRepeat"}>Repeat password</label>
+                  <Field
+                    type="password"
+                    name="passwordRepeat"
+                    id={id + "passwordRepeat"}
+                    placeholder="Повторите пароль"
+                  />
+                  <ErrorMessage name="passwordRepeat" component="div" />
+                </InputBlockDiv>
+              </Window>
+              <BlockButtons>
+                <ButtonGeneral type="submit">Зарегистрироваться</ButtonGeneral>
+              </BlockButtons>
+            </FormBlock>
           </Form>
         )}
       </Formik>

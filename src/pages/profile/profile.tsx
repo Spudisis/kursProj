@@ -21,8 +21,8 @@ export const Profile = () => {
   let { statusSite } = useSelector(getStatusSite);
   let { viewData, view } = useSelector(getdata);
   const { data } = useSelector(getdata);
-  const logout = () => {
-    signOut(auth);
+  const logout = async () => {
+    await signOut(auth);
     dispatch(clearData());
     dispatch(clearId());
     dispatch(clearStatusSite());
@@ -43,7 +43,9 @@ export const Profile = () => {
             {view && <View type={viewData.type} statement={viewData.elem} />}
           </div>
           <div className={s.buttons}>
-            {!statusSite && <button>Редактировать личные данные</button>}
+            {!statusSite && (
+              <button onClick={() => navigation("/kursProj/profile/changeInfo")}>Редактировать личные данные</button>
+            )}
             <button onClick={() => logout()}>Выйти из профиля</button>
           </div>
         </>

@@ -2,7 +2,7 @@ import React from "react";
 import s from "./marriage.module.css";
 import GeneralInfo from "../../../components/typeStatement/generalInfo";
 import PassportInfo from "../../../components/typeStatement/passportInfo";
-import RedirectProfile from "../../../components/redirectProfile/redirectProfile";
+import RedirectProfile from "../../../components/redirectProfile";
 import MarriageSpec from "../../../components/typeStatement/FormsSpec/marriageSpec";
 
 import { useAuthState } from "react-firebase-hooks/auth";

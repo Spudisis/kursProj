@@ -2,14 +2,14 @@ import React from "react";
 import s from "../marriage/marriage.module.css";
 import GeneralInfo from "../../../components/typeStatement/generalInfo";
 import PassportInfo from "../../../components/typeStatement/passportInfo";
-import RedirectProfile from "../../../components/redirectProfile/redirectProfile";
+import RedirectProfile from "../../../components/redirectProfile";
 
 import { ActZags } from "../../../components/typeStatement/ActZags";
 import BornSpec from "../../../components/typeStatement/FormsSpec/bornSpec";
 
 import { uid } from "../../../redux/slices/types";
 import DateVisited from "../../../components/typeStatement/FormsSpec/dateVisited";
-const Born = ({ uid,  setTypeStatement, setDataObj }: uid) => {
+const Born = ({ uid, setTypeStatement, setDataObj }: uid) => {
   const [statusConfirm, setStatusConfirm] = React.useState(0); //какую форму показывать
   const [infoGeneral, setInfoGeneral] = React.useState({}); //объект с общей информацией
   const [infoPassport, setinfoPassport] = React.useState({}); //объект с данными паспорта

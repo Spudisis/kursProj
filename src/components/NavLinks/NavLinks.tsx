@@ -3,19 +3,18 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { NavLink } from "react-router-dom";
 import s from "./NavLinks.module.css";
 import { auth } from "../../firebase/config";
+import styled from "styled-components";
+import { css } from "styled-components";
+import { ListView } from "../../componentStyled/list";
 const NavLinks = () => {
   const [user, loading, error] = useAuthState(auth as any);
+
   return (
     <>
-      {user ? (
-        <NavLink to={"kursProj/statement"} className={({ isActive }) => (!isActive ? s.active : s.inactive)}>
-          Подать заявление
-        </NavLink>
-      ) : (
-        <NavLink to={"kursProj/authorization"} className={s.active}>
-          Подать заявление
-        </NavLink>
-      )}
+      <NavLink to={"kursProj/statement"} className={({ isActive }) => (!isActive ? s.active : s.inactive)}>
+        Подать заявление
+      </NavLink>
+
       <NavLink to="kursProj/guide" className={({ isActive }) => (!isActive ? s.active : s.inactive)}>
         Управление
       </NavLink>

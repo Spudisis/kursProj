@@ -27,3 +27,4 @@ declare module "*.sass" {
   export default css;
 }
 declare module "uuid";
+declare module "styled-components";

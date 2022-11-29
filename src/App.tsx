@@ -1,9 +1,8 @@
 import React from "react";
-import Footer from "./components/footer/footer";
-import Header from "./components/header/header";
+import Footer from "./components/footer";
+import Header from "./components/header";
 import Main from "./pages/main/general";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import s from "./normalize.module.css";
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Statement from "./pages/statement/statement";
 import Auth from "./pages/auth/auth";
 import { Profile } from "./pages/profile/profile";
@@ -13,9 +12,14 @@ import { auth } from "./firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getUid, setEmailUser, setPerson } from "./redux/slices/slice";
 import { useSelector } from "react-redux";
-
+import { NotFound } from "./pages/NotFound/NotFound";
+import { ChangeInfoPerson } from "./pages/changeInfoPerson/ChangeInfoPerson";
+import { Window } from "./componentStyled/window";
+import styled from "styled-components";
+import { MainDiv } from "./componentStyled/mainDiv";
 function App() {
   const dispatch = useAppDispatch();
+
   const [user, loading, error] = useAuthState(auth as any);
   const { uid } = useSelector(getUid);
   React.useEffect(() => {
@@ -30,21 +34,24 @@ function App() {
       if (user.email) dispatch(setEmailUser(user?.email));
     }
   }, [user]);
+
   return (
-    <div className={s.body}>
+    <Window direction="column">
       <Router>
         <Header />
-        <div className={s.main}>
+        <MainDiv>
           <Routes>
             <Route path="kursProj/" element={<Main />} />
             <Route path="kursProj/statement/*" element={<Statement />} />
             <Route path="kursProj/authorization" element={<Auth />} />
             <Route path="kursProj/profile" element={<Profile />} />
+            <Route path="kursProj/profile/changeInfo" element={<ChangeInfoPerson />} />
+            <Route path="kursProj/*" element={<NotFound />} />
           </Routes>
-        </div>
+        </MainDiv>
         <Footer />
       </Router>
-    </div>
+    </Window>
   );
 }
 

@@ -1,21 +1,31 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import s from "./auth.module.css";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import logo from "../../assets/img/emblem.png";
 import Login from "../../components/Auth/login";
 import Registation from "../../components/Auth/registration";
 
-import { useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useAuthState,
+  useCreateUserWithEmailAndPassword,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/config";
 import { setPerson } from "../../redux/slices/slice";
 import { useAppDispatch } from "../../redux/store";
+import { Window } from "../../componentStyled/window";
+import { Root } from "../../componentStyled/root";
+import { AuthButtonSwap } from "../../componentStyled/auth/authChange";
+import { ButtonsSwap } from "../../componentStyled/auth/authButtonsSpaw";
+import { AuthWarningSwap } from "../../componentStyled/auth/warning";
 
 const Auth = () => {
   const dispath = useAppDispatch();
   const [typeAuth, settypeAuth] = React.useState(false);
-  const [styleWarning, setStyleWarning] = React.useState(s.warningHide);
-
+  const [styleWarning, setStyleWarning] = React.useState(false);
+  const [user, loading, error] = useAuthState(auth as any);
   const navigation = useNavigate();
+
   const [CreateUserWithEmailAndPassword, userReg, loadingReg, errorReg] = useCreateUserWithEmailAndPassword(
     auth as any
   );
@@ -30,8 +40,11 @@ const Auth = () => {
     signInWithEmailAndPassword(email, password);
   };
   React.useEffect(() => {
+    user && navigation("/kursProj/profile");
+  }, [user]);
+  React.useEffect(() => {
     if (errorLog || errorReg) {
-      setStyleWarning(s.warning);
+      setStyleWarning(true);
     }
   }, [errorLog, errorReg]);
 
@@ -49,32 +62,34 @@ const Auth = () => {
   }, [userReg, userLog]);
 
   React.useEffect(() => {
-    setStyleWarning(s.warningHide);
+    setStyleWarning(false);
   }, [typeAuth]);
 
   return (
-    <div className={s.wrapper}>
-      <div className={s.root}>
-        <div className={s.blockInfo}>
+    <Window bgc height={"90vh"} justify="center" align="center">
+      <Root auth>
+        <Root justify="center" align="center" height="auto">
           <img src={logo} alt="NN" />
-          <div className={s.buttonsAuth}>
-            <button className={typeAuth ? s.active : s.deactive} onClick={() => settypeAuth(true)}>
+          <ButtonsSwap>
+            <AuthButtonSwap swap={typeAuth} onClick={() => settypeAuth(true)}>
               Войти
-            </button>
+            </AuthButtonSwap>
             /
-            <button className={typeAuth ? s.deactive : s.active} onClick={() => settypeAuth(false)}>
+            <AuthButtonSwap swap={!typeAuth} onClick={() => settypeAuth(false)}>
               Регистрация
-            </button>
-          </div>
-        </div>
+            </AuthButtonSwap>
+          </ButtonsSwap>
+        </Root>
         {typeAuth ? (
           <Login setData={(n: any) => handleLogin(n)} />
         ) : (
           <Registation setData={(n: any) => handleRegister(n)} />
         )}
-        <div className={styleWarning}>{!typeAuth ? "Такой Email уже существует" : "Перепроверьте данные"}</div>
-      </div>
-    </div>
+        <AuthWarningSwap swap={styleWarning}>
+          {!typeAuth ? "Такой Email уже существует" : "Перепроверьте данные"}
+        </AuthWarningSwap>
+      </Root>
+    </Window>
   );
 };
 
