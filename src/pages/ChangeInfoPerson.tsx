@@ -1,9 +1,23 @@
 import React from "react";
 import { useUpdateEmail, useUpdatePassword } from "react-firebase-hooks/auth";
-import { auth } from "../../firebase/config";
-import { setEmailUser } from "../../redux/slices/slice";
-import { useAppDispatch } from "../../redux/store";
-import s from "./ChangeInfoPErson.module.css";
+import styled from "styled-components";
+import { ButtonGeneral } from "../componentStyled/button";
+import { InputBlockDiv } from "../componentStyled/Form/InputBlock";
+import { Window } from "../componentStyled/window";
+import { auth } from "../firebase/config";
+import { setEmailUser } from "../redux/slices/slice";
+import { useAppDispatch } from "../redux/store";
+
+const BlockInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 20px;
+  margin-right: 20px;
+`;
+
 export const ChangeInfoPerson = () => {
   const dispatch = useAppDispatch();
   const id = React.useId;
@@ -39,9 +53,9 @@ export const ChangeInfoPerson = () => {
   };
 
   return (
-    <div>
-      <div className={s.infoPerson}>
-        <div className={s.blockInfo}>
+    <Window height="80vh" direction="row" justify="center" align="center">
+      <BlockInfo>
+        <InputBlockDiv change>
           <label htmlFor={id + "1"}>Email</label>
           <input
             type="email"
@@ -51,10 +65,13 @@ export const ChangeInfoPerson = () => {
               setValidEmail(true);
             }}
           />
-          {!validEmail && <span className={s.emailSpan}>Введите Email</span>}
-          <button onClick={() => ChangeEmail()}>Изменить почту</button>
-        </div>
-        <div className={s.blockInfo}>
+
+          {!validEmail && <div>Введите Email</div>}
+        </InputBlockDiv>
+        <ButtonGeneral onClick={() => ChangeEmail()}>Изменить почту</ButtonGeneral>
+      </BlockInfo>
+      <BlockInfo>
+        <InputBlockDiv change>
           <label htmlFor={id + "2"}>Password</label>
           <input
             type="text"
@@ -64,10 +81,11 @@ export const ChangeInfoPerson = () => {
               setValidPass(true);
             }}
           />
-          {!validPass && <span className={s.passSpan}>Пароль должен быть от 6 символов</span>}
-          <button onClick={() => ChangePass()}>Изменить пароль</button>
-        </div>
-      </div>
-    </div>
+
+          {!validPass && <div>Пароль должен быть от 6 символов</div>}
+        </InputBlockDiv>
+        <ButtonGeneral onClick={() => ChangePass()}>Изменить пароль</ButtonGeneral>
+      </BlockInfo>
+    </Window>
   );
 };

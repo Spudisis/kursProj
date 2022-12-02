@@ -23,6 +23,15 @@ export const dataSlice = createSlice({
         });
       }
     },
+    addPay: (state, action: PayloadAction<number>) => {
+      if (state.data) {
+        state.data.forEach((elem: any) => {
+          if (elem.id === action.payload) {
+            elem.pay = true;
+          }
+        });
+      }
+    },
     clearData: (state) => {
       state.data = [];
       state.viewData = {};
@@ -37,6 +46,6 @@ export const dataSlice = createSlice({
 });
 export const getdata = (state: any) => state.data;
 
-export const { setData, deleteData, clearData, viewSet, viewData, addData } = dataSlice.actions;
+export const { setData, deleteData, clearData, viewSet, viewData, addData, addPay } = dataSlice.actions;
 
 export default dataSlice.reducer;

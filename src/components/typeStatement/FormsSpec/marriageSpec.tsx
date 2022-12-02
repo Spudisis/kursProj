@@ -1,6 +1,11 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import s from "../statementTypes.module.css";
+
+import { FormBlock } from "../../../componentStyled/Form/Form";
+import { Button } from "../button";
+import { Window } from "../../../componentStyled/window";
+import { InputBlockDiv } from "../../../componentStyled/Form/InputBlock";
+import { ColumnBlock } from "../../../componentStyled/Form/column";
 
 const MarriageSpec = ({ status, info, numberForm }: any) => {
   const id = React.useId();
@@ -36,37 +41,39 @@ const MarriageSpec = ({ status, info, numberForm }: any) => {
         }}
       >
         {({ isSubmitting }) => (
-          <Form className={s.form}>
-            <div className={s.formMarried}>
-              <div className={s.inputs}>
-                <h2>Для него</h2>
-                <div className={s.inputBlock}>
-                  <label htmlFor={id + "lastDocM"}>Предыдущий брак</label>
-                  <Field type="text" name="lastDocM" id={id + "lastDocM"} placeholder="Наличие" className={s.input} />
-                  <ErrorMessage name="lastDocM" component="div" className={s.errorMessage} />
-                </div>
-                <div className={s.inputBlock}>
-                  <label htmlFor={id + "familyM"}>Присвоить фамилию</label>
-                  <Field type="text" name="familyM" id={id + "familyM"} placeholder="Фамилия" className={s.input} />
-                  <ErrorMessage name="familyM" component="div" className={s.errorMessage} />
-                </div>
-              </div>
-              <div className={s.inputs}>
-                <h2>Для неё</h2>
-                <div className={s.inputBlock}>
-                  <label htmlFor={id + "lastDocW"}>Предыдущий брак</label>
-                  <Field type="text" name="lastDocW" id={id + "lastDocW"} placeholder="Наличие" className={s.input} />
-                  <ErrorMessage name="lastDocW" component="div" className={s.errorMessage} />
-                </div>
-                <div className={s.inputBlock}>
-                  <label htmlFor={id + "familyW"}>Присвоить фамилию</label>
-                  <Field type="text" name="familyW" id={id + "familyW"} placeholder="Фамилия" className={s.input} />
-                  <ErrorMessage name="familyW" component="div" className={s.errorMessage} />
-                </div>
-              </div>
-            </div>
+          <Form>
+            <FormBlock>
+              <Window height="auto" justify="space-between">
+                <ColumnBlock margin="0px">
+                  <h2>Для него</h2>
+                  <InputBlockDiv statement>
+                    <label htmlFor={id + "lastDocM"}>Предыдущий брак</label>
+                    <Field type="text" name="lastDocM" id={id + "lastDocM"} placeholder="Наличие" />
+                    <ErrorMessage name="lastDocM" component="div" />
+                  </InputBlockDiv>
+                  <InputBlockDiv statement>
+                    <label htmlFor={id + "familyM"}>Присвоить фамилию</label>
+                    <Field type="text" name="familyM" id={id + "familyM"} placeholder="Фамилия" />
+                    <ErrorMessage name="familyM" component="div" />
+                  </InputBlockDiv>
+                </ColumnBlock>
+                <ColumnBlock>
+                  <h2>Для неё</h2>
+                  <InputBlockDiv statement>
+                    <label htmlFor={id + "lastDocW"}>Предыдущий брак</label>
+                    <Field type="text" name="lastDocW" id={id + "lastDocW"} placeholder="Наличие" />
+                    <ErrorMessage name="lastDocW" component="div" />
+                  </InputBlockDiv>
+                  <InputBlockDiv statement>
+                    <label htmlFor={id + "familyW"}>Присвоить фамилию</label>
+                    <Field type="text" name="familyW" id={id + "familyW"} placeholder="Фамилия" />
+                    <ErrorMessage name="familyW" component="div" />
+                  </InputBlockDiv>
+                </ColumnBlock>
+              </Window>
 
-            <button type="submit">Далее</button>
+              <Button name={"Далее"} />
+            </FormBlock>
           </Form>
         )}
       </Formik>

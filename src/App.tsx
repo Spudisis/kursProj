@@ -1,22 +1,23 @@
 import React from "react";
 import Footer from "./components/footer";
 import Header from "./components/header";
-import Main from "./pages/main/general";
+import Main from "./pages/general";
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Statement from "./pages/statement/statement";
-import Auth from "./pages/auth/auth";
-import { Profile } from "./pages/profile/profile";
+import Auth from "./pages/auth";
+import { Profile } from "./pages/profile";
 import { checkData } from "./firebase/checkData";
 import { useAppDispatch } from "./redux/store";
 import { auth } from "./firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getUid, setEmailUser, setPerson } from "./redux/slices/slice";
 import { useSelector } from "react-redux";
-import { NotFound } from "./pages/NotFound/NotFound";
-import { ChangeInfoPerson } from "./pages/changeInfoPerson/ChangeInfoPerson";
+import { NotFound } from "./pages/NotFound";
+import { ChangeInfoPerson } from "./pages/ChangeInfoPerson";
 import { Window } from "./componentStyled/window";
 import styled from "styled-components";
 import { MainDiv } from "./componentStyled/mainDiv";
+import { Pay } from "./pages/pay";
 function App() {
   const dispatch = useAppDispatch();
 
@@ -45,6 +46,8 @@ function App() {
             <Route path="kursProj/statement/*" element={<Statement />} />
             <Route path="kursProj/authorization" element={<Auth />} />
             <Route path="kursProj/profile" element={<Profile />} />
+
+            <Route path="kursProj/profile/pay/:id" element={<Pay />} />
             <Route path="kursProj/profile/changeInfo" element={<ChangeInfoPerson />} />
             <Route path="kursProj/*" element={<NotFound />} />
           </Routes>

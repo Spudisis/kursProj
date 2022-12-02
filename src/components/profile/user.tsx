@@ -1,11 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addStatement } from "../../firebase/addStatement";
-import s from "../../pages/profile/profile.module.css";
+import s from "./profile.module.css";
 import { getdata } from "../../redux/slices/getData";
 import { getEmailUser, getStatusSite, getUid } from "../../redux/slices/slice";
 import { StatementProfile } from "./statement";
+import { ButtonGeneral } from "../../componentStyled/button";
+import { Window } from "../../componentStyled/window";
 
 export const User = ({ data }: any) => {
   const { uid } = useSelector(getUid);
@@ -66,15 +68,21 @@ export const User = ({ data }: any) => {
                     typeList={"no"}
                     key={index + "statement"}
                     elem={elem.info}
+                    pay={elem.pay}
                   />
                 );
               })}
             </div>
             {data.length > 6 && (
-              <div className={s.buttons}>
-                <button onClick={() => changePaginationStr("back")}>Назад</button>
-                <button onClick={() => changePaginationStr("next")}>Далее</button>
-              </div>
+              <Window justify="space-between" height="auto" margin="0px 0px 10px">
+                <ButtonGeneral width="150px" onClick={() => changePaginationStr("back")}>
+                  Назад
+                </ButtonGeneral>
+
+                <ButtonGeneral width="150px" onClick={() => changePaginationStr("next")}>
+                  Далее
+                </ButtonGeneral>
+              </Window>
             )}
           </>
         ) : (

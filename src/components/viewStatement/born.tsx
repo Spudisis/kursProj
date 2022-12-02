@@ -1,4 +1,5 @@
 import React from "react";
+
 import s from "./view.module.css";
 export const BornView = ({ statement }: any) => {
   console.log(statement.general);

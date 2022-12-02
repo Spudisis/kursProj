@@ -1,6 +1,6 @@
 import getData, { setData } from "../redux/slices/getData";
 import { setStatusSite } from "../redux/slices/slice";
-import { setcheckStatementsUsers, setDataUsers } from "../redux/slices/superUser";
+import { setcheckStatementsUsers, setconfirmStatementsUsers, setDataUsers } from "../redux/slices/superUser";
 import { useAppDispatch } from "../redux/store";
 import { addUserDoc } from "./addUserDoc";
 import { auth } from "./config";
@@ -38,6 +38,9 @@ export const checkData = async (uid: any, dispatch: any) => {
                   }
                   if (element.status === "В рассмотрении") {
                     dispatch(setcheckStatementsUsers({ docName, ...element }));
+                  }
+                  if (element.status === "Одобрено") {
+                    dispatch(setconfirmStatementsUsers({ docName, ...element }));
                   }
                 });
               }

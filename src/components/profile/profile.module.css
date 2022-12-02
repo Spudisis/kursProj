@@ -1,11 +1,3 @@
-.root {
-  min-height: 90vh;
-  position: relative;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 summary {
   padding: 10px 0px 10px 20px;
   background-color: hsl(207, 62%, 56%);
@@ -20,13 +12,7 @@ details[open] > summary {
   color: gold;
   background-color: hsl(217, 57%, 15%);
 }
-.pageInfo {
-  padding: 20px 0px;
-  font-size: 30px;
-}
-.pageInfo h2 {
-  margin: 0px;
-}
+
 .personInformation {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -85,37 +71,6 @@ details[open] > summary {
 }
 
 .sendStatement:hover {
-  background-color: hsl(217, 57%, 15%);
-  color: gold;
-}
-.buttons {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-.buttons button {
-  width: 200px;
-  height: 80px;
-  padding: 5px;
-  margin: 0px 20px;
-  border-radius: 15px;
-  border: none;
-  background-color: hsl(207, 62%, 56%);
-  color: white;
-  font-size: 22px;
-  margin-bottom: 50px;
-  cursor: pointer;
-}
-@media screen and (max-width: 470px) {
-  .buttons button {
-    font-size: 16px;
-    width: auto;
-    height: auto;
-  }
-}
-
-.buttons button:hover {
   background-color: hsl(217, 57%, 15%);
   color: gold;
 }

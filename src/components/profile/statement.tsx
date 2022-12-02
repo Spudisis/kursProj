@@ -1,6 +1,7 @@
 import { deleteObject, getDownloadURL, listAll, ref } from "firebase/storage";
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ButtonGeneral } from "../../componentStyled/button";
 import { changeStatementStatus } from "../../firebase/changeStatusStatement";
@@ -111,6 +112,7 @@ type stat = {
   typeList: string;
   dateVisited: string;
   elem: any;
+  pay: any;
 };
 export const StatementProfile = ({
   number,
@@ -123,6 +125,7 @@ export const StatementProfile = ({
   typeList,
   dateVisited,
   elem,
+  pay,
 }: stat) => {
   const [classStat, setClassStat] = React.useState(false);
   const [changeStat, setChangeStat] = React.useState(false);
@@ -197,6 +200,8 @@ export const StatementProfile = ({
     console.log(elem.spec.name);
     elem.spec.name && displayImage(elem.spec.name);
   }, []);
+
+  const payButton = () => {};
   return (
     <Item>
       <ItemCenter>Заявка № {number}</ItemCenter>
@@ -205,9 +210,10 @@ export const StatementProfile = ({
         <p>Статус рассмотрения: {status}</p>
         <p>Заявка типа: {type}</p>
         <p>Дата посещения: {dateVisited}</p>
+        {status === "Одобрено" && <p>Статус оплаты: {pay ? "Оплачено" : "Не оплачено"}</p>}
         {elem.spec.name && (
           <p>
-            Файл:{" "}
+            Файл:
             <a href={ImageCheck} target="_blank">
               Открыть
             </a>
@@ -222,10 +228,16 @@ export const StatementProfile = ({
           <ButtonGeneral cart bgc="hsl(210,76%,40%)" width="150px" onClick={() => setClassStat(true)}>
             Отменить заявку
           </ButtonGeneral>
+        ) : status === "Одобрено" && !user && !pay ? (
+          <Link to={`pay/${id}`}>
+            <ButtonGeneral cart bgc="hsl(210,76%,40%)" width="150px" onClick={payButton}>
+              Оплата
+            </ButtonGeneral>
+          </Link>
         ) : (
           <div></div>
         )}
-        {user && (
+        {user && status !== "Одобрено" && (
           <ButtonGeneral cart bgc="hsl(210,76%,40%)" width="150px" onClick={() => setChangeStat(!changeStat)}>
             Статус
           </ButtonGeneral>

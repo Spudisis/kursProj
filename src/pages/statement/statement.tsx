@@ -35,6 +35,7 @@ const Statement = () => {
           type,
           date: dateNow,
           info: dataObj,
+          pay: false,
         };
 
         dispatch(setData(objectStatement));

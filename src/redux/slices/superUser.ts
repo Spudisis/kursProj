@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 const initialState: any = {
   statementsUsers: [], //данные заявок ожидается рассмотрение
   checkStatementsUsers: [], //данные заявок в рассмотрении
+  confirmStatementsUsers: [], //данные заявок Одобрено
 };
 export const dataSlice = createSlice({
   name: "statementsUsers",
@@ -65,15 +66,19 @@ export const dataSlice = createSlice({
         }
       }
     },
-
+    setconfirmStatementsUsers: (state, action: PayloadAction<any>) => {
+      state.confirmStatementsUsers.push(action.payload);
+    },
     clearDataUsers: (state) => {
       state.statementsUsers = [];
       state.checkStatementsUsers = [];
+      state.confirmStatementsUsers = [];
     },
   },
 });
 export const getdataUsers = (state: any) => state.statementsUsers;
 
-export const { setDataUsers, setcheckStatementsUsers, changeDataUsers, clearDataUsers } = dataSlice.actions;
+export const { setDataUsers, setcheckStatementsUsers, setconfirmStatementsUsers, changeDataUsers, clearDataUsers } =
+  dataSlice.actions;
 
 export default dataSlice.reducer;

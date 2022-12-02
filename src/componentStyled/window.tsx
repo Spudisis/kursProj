@@ -7,6 +7,8 @@ const Wrapper = styled.div`
   flex-direction: ${({ direction }: styles) => direction || "row"};
   justify-content: ${({ justify }: styles) => justify || "space-between"};
   align-items: ${({ align }: styles) => align || "stretch"};
+  width: ${({ width }: styles) => width || "auto"};
+  margin: ${({ margin }: styles) => margin || "0px"};
   ${(props: styles) =>
     props.bgc &&
     css`
@@ -28,6 +30,30 @@ const Wrapper = styled.div`
         flex-direction: column;
       }
     `}}
+    ${(props: styles) =>
+      props.notFound &&
+      css`
+        padding: 20px 40px;
+        color: white;
+        font-size: 30px;
+        margin: 0 auto;
+        background-color: hsl(207, 62%, 56%);
+        border-radius: 20px;
+      `}}
+      ${(props: styles) =>
+        props.pay &&
+        css`
+          flex-direction: row;
+          align-items: center;
+          img {
+            object-fit: contain;
+            max-width: 300px;
+            height: auto;
+          }
+          div {
+            margin-left: 30px;
+          }
+        `}}
 `;
 
 export const Window = (props: any) => {
@@ -35,10 +61,14 @@ export const Window = (props: any) => {
 };
 
 type styles = {
+  margin: string | undefined;
+  width: string | undefined;
   bgc: boolean | undefined;
   footer: boolean | undefined;
   height: string | undefined;
   direction: string | undefined;
   justify: string | undefined;
   align: string | undefined;
+  notFound: boolean | undefined;
+  pay: boolean | undefined;
 };

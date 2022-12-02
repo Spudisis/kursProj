@@ -1,10 +1,16 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import s from "../statementTypes.module.css";
+
 import { useSelector } from "react-redux";
 import { getUid } from "../../../redux/slices/slice";
 import { UploadImg } from "../../../firebase/addFile";
 import { v4 as uuidv4 } from "uuid";
+import { FormBlock } from "../../../componentStyled/Form/Form";
+import { Button } from "../button";
+import { Window } from "../../../componentStyled/window";
+import { InputBlockDiv } from "../../../componentStyled/Form/InputBlock";
+import { ColumnBlock } from "../../../componentStyled/Form/column";
+
 const DeathSpec = ({ numberForm, status, info }: any) => {
   const { uid } = useSelector(getUid);
   const [fileUpload, setFileUpload] = React.useState("" as any);
@@ -28,34 +34,35 @@ const DeathSpec = ({ numberForm, status, info }: any) => {
           status(numberForm);
           let { name } = fileUpload;
           const randId = Math.floor(Math.random() * (99999999 - 10000000) + 10000000);
-          // name = randId + name;
+
           UploadImg({ fileUpload, uid });
           info({ name, ...values });
         }}
       >
         {({ isSubmitting }) => (
-          <Form className={s.form}>
-            <div className={s.formMarried}>
-              <div className={s.inputs}>
-                <div className={s.inputBlock}>
-                  <label htmlFor={id + "dateDeath"}>Дата смерти</label>
-                  <Field type="date" name="date" id={id + "dateDeath"} className={s.input} />
-                  <ErrorMessage name="date" component="div" className={s.errorMessage} />
-                </div>
-                <div className={s.inputBlock}>
-                  <label htmlFor={id + "dateDeath"}>Амбулаторной карты умершего</label>
-                  <Field
-                    type="file"
-                    name="dateDeath"
-                    id={id + "dateDeath"}
-                    className={s.input}
-                    onChange={(e: any) => setFileUpload(e.target.files[0])}
-                  />
-                  <ErrorMessage name="dateDeath" component="div" className={s.errorMessage} />
-                </div>
-              </div>
-            </div>
-            <button type="submit">Далее</button>
+          <Form>
+            <FormBlock>
+              <Window height="auto" justify="space-between">
+                <ColumnBlock margin="0px">
+                  <InputBlockDiv statement>
+                    <label htmlFor={id + "dateDeath"}>Дата смерти</label>
+                    <Field type="date" name="date" id={id + "dateDeath"} />
+                    <ErrorMessage name="date" component="div" />
+                  </InputBlockDiv>
+                  <InputBlockDiv statement>
+                    <label htmlFor={id + "dateDeath"}>Амбулаторной карты умершего</label>
+                    <Field
+                      type="file"
+                      name="dateDeath"
+                      id={id + "dateDeath"}
+                      onChange={(e: any) => setFileUpload(e.target.files[0])}
+                    />
+                    <ErrorMessage name="dateDeath" component="div" />
+                  </InputBlockDiv>
+                </ColumnBlock>
+              </Window>
+              <Button name={"Далее"} />
+            </FormBlock>
           </Form>
         )}
       </Formik>

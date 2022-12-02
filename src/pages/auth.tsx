@@ -1,23 +1,23 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import logo from "../../assets/img/emblem.png";
-import Login from "../../components/Auth/login";
-import Registation from "../../components/Auth/registration";
+import logo from "../assets/img/emblem.png";
+import Login from "../components/Auth/login";
+import Registation from "../components/Auth/registration";
 
 import {
   useAuthState,
   useCreateUserWithEmailAndPassword,
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
-import { auth } from "../../firebase/config";
-import { setPerson } from "../../redux/slices/slice";
-import { useAppDispatch } from "../../redux/store";
-import { Window } from "../../componentStyled/window";
-import { Root } from "../../componentStyled/root";
-import { AuthButtonSwap } from "../../componentStyled/auth/authChange";
-import { ButtonsSwap } from "../../componentStyled/auth/authButtonsSpaw";
-import { AuthWarningSwap } from "../../componentStyled/auth/warning";
+import { auth } from "../firebase/config";
+import { setPerson } from "../redux/slices/slice";
+import { useAppDispatch } from "../redux/store";
+import { Window } from "../componentStyled/window";
+import { Root } from "../componentStyled/root";
+import { AuthButtonSwap } from "../componentStyled/auth/authChange";
+import { ButtonsSwap } from "../componentStyled/auth/authButtonsSpaw";
+import { AuthWarningSwap } from "../componentStyled/auth/warning";
 
 const Auth = () => {
   const dispath = useAppDispatch();

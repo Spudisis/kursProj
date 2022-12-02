@@ -1,6 +1,10 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import s from "../statementTypes.module.css";
+
+import { FormBlock } from "../../../componentStyled/Form/Form";
+import { Button } from "../button";
+import { Window } from "../../../componentStyled/window";
+import { InputBlockDiv } from "../../../componentStyled/Form/InputBlock";
 
 const DateVisited = ({ numberForm, status, info, setEnd }: any) => {
   const id = React.useId();
@@ -12,11 +16,14 @@ const DateVisited = ({ numberForm, status, info, setEnd }: any) => {
         }}
         validate={(values) => {
           const errors: any = {};
-          if (!values.dateVisited || values.dateVisited.length === 0) {
-            errors.dateVisited = "Обязательно к заполнению";
+          if (!values.dateVisited) {
+            errors.dateVisited = "Обязательное поле";
           }
+          return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
+          console.log(values.dateVisited);
+
           status(numberForm);
           info(values);
           setEnd(true);
@@ -24,18 +31,19 @@ const DateVisited = ({ numberForm, status, info, setEnd }: any) => {
         }}
       >
         {({ isSubmitting }) => (
-          <Form className={s.form}>
-            <div className={s.formMarried}>
-              <div className={s.inputs}>
-                <div className={s.inputBlock}>
-                  <label htmlFor={id + "dateVisited"}>Дата посещения</label>
-                  <Field type="date" name="dateVisited" id={id + "dateVisited"} className={s.input} />
-                  <ErrorMessage name="dateVisited" component="div" className={s.errorMessage} />
-                </div>
-              </div>
-            </div>
-
-            <button type="submit">Подать заявление</button>
+          <Form>
+            <FormBlock>
+              <Window height="auto" justify="space-between">
+                <Window height="auto" justify="stretch" direction="column" width="400px">
+                  <InputBlockDiv statement>
+                    <label htmlFor={id + "dateVisited"}>Дата посещения</label>
+                    <Field type="date" name="dateVisited" id={id + "dateVisited"} />
+                    <ErrorMessage name="dateVisited" component="div" />
+                  </InputBlockDiv>
+                </Window>
+              </Window>
+              <Button name={"Отправить заявление"} />
+            </FormBlock>
           </Form>
         )}
       </Formik>
