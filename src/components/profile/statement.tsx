@@ -149,7 +149,7 @@ export const StatementProfile = ({
       : n === 2
       ? (status = "Отказано")
       : (status = "Одобрено");
-
+    console.log(typeList);
     dispatch(changeDataUsers({ id, status, typeList }));
     setChangeStat(false);
     changeStatementStatus(docName, statusSite, id, status);

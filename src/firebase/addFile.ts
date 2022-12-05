@@ -10,6 +10,6 @@ export const UploadImg = async ({ fileUpload, uid }: any) => {
   if (fileUpload) {
     const imageRef = ref(storage, `docs/${uid}/${name}`);
     await uploadBytes(imageRef, fileUpload).then((snaphsot) => {});
-    console.log("это бля сначала");
+    console.log("Файл загрузился");
   }
 };

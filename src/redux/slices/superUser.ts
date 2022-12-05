@@ -27,6 +27,8 @@ export const dataSlice = createSlice({
           }
           if (elem.status === "В рассмотрении") {
             state.checkStatementsUsers.push(elem);
+          } else if (elem.status === "Одобрено") {
+            state.confirmStatementsUsers.push(elem);
           } else {
             console.log(action.payload.status);
             a.push(elem);
@@ -37,33 +39,49 @@ export const dataSlice = createSlice({
         state.statementsUsers = a;
       }
       if (action.payload.typeList === "statementCheck") {
-        let b: any = [];
-        const reduxMax2 = state.checkStatementsUsers.slice(0);
-        if (action.payload.status === "Одобрено" || action.payload.status === "Отказано") {
-          reduxMax2.forEach((elem: any) => {
-            if (elem.id === action.payload.id) {
-              elem.status = action.payload.status;
-              console.log(elem.status);
-            }
-          });
-          reduxMax2.filter((elem: any) => elem.status !== "Одобрено" || "Отказано");
-          state.checkStatementsUsers = reduxMax2;
-        } else {
-          reduxMax2.forEach((elem: any) => {
-            if (elem.id === action.payload.id) {
-              elem.status = action.payload.status;
-              console.log(elem.status);
-            }
-            if (elem.status === "Ожидается рассмотрение") {
-              state.statementsUsers.push(elem);
-            } else {
-              console.log(action.payload.status);
-              b.push(elem);
-            }
-          });
-          console.log(b);
-          state.checkStatementsUsers = b;
-        }
+        let a: any = [];
+        let reduxMas = state.checkStatementsUsers.slice(0);
+
+        reduxMas.forEach((elem: any) => {
+          if (elem.id === action.payload.id) {
+            elem.status = action.payload.status;
+            console.log(elem.status);
+          }
+          if (elem.status === "Ожидается рассмотрение") {
+            state.statementsUsers.push(elem);
+          } else if (elem.status === "Одобрено") {
+            state.confirmStatementsUsers.push(elem);
+          } else {
+            console.log(action.payload.status);
+            a.push(elem);
+          }
+        });
+
+        console.log(a);
+        state.checkStatementsUsers = a;
+      }
+
+      if (action.payload.typeList === "statementConfirm") {
+        let a: any = [];
+        let reduxMas = state.confirmStatementsUsers.slice(0);
+
+        reduxMas.forEach((elem: any) => {
+          if (elem.id === action.payload.id) {
+            elem.status = action.payload.status;
+            console.log(elem.status);
+          }
+          if (elem.status === "В рассмотрении") {
+            state.checkStatementsUsers.push(elem);
+          } else if (elem.status === "Ожидается рассмотрение") {
+            state.statementsUsers.push(elem);
+          } else {
+            console.log(action.payload.status);
+            a.push(elem);
+          }
+        });
+
+        console.log(a);
+        state.confirmStatementsUsers = a;
       }
     },
     setconfirmStatementsUsers: (state, action: PayloadAction<any>) => {

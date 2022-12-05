@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Window } from "../componentStyled/window";
 import cart from "../assets/img/cart.jfif";
 import styled from "styled-components";
@@ -33,6 +33,7 @@ export const Pay = () => {
   const [error3, setError3] = React.useState("");
   const [error4, setError4] = React.useState("");
 
+  const redirect = useNavigate();
   const { data } = useSelector(getdata);
 
   React.useEffect(() => {
@@ -90,6 +91,7 @@ export const Pay = () => {
               }}
               onSubmit={(values, { setSubmitting }) => {
                 id && dispatch(addPay(+id));
+                redirect("/kursProj/profile");
               }}
             >
               {({ isSubmitting }) => (

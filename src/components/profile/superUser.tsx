@@ -161,7 +161,7 @@ export const SuperUser = () => {
                       user={true}
                       id={elem.id}
                       dateVisited={elem.info.dateVisited.dateVisited}
-                      typeList={"statement"}
+                      typeList={"statementConfirm"}
                       key={index + "statement"}
                       elem={elem.info}
                       pay={elem.pay}
