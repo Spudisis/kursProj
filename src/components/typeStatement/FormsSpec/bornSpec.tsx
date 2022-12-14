@@ -19,10 +19,20 @@ const RadioButtons = styled.div`
   color: black;
 `;
 
+export const ErrorFile = styled.div`
+  display: ${({ display }: any) => display};
+`;
+export const DownloadFileCheck = styled.div`
+  display: ${({ display }: any) => display};
+`;
 const BornSpec = ({ numberForm, status, info }: any) => {
   const id = React.useId();
+  const [errorFile, setErrorFile] = React.useState("none");
   const { uid } = useSelector(getUid);
   const [fileUpload, setFileUpload] = React.useState("" as any);
+  const [downloadFileCheck, setDownloadFileCheck] = React.useState("none");
+  const JSJoda = require("@js-joda/core");
+  let LocalDate = JSJoda.LocalDate;
 
   return (
     <>
@@ -46,6 +56,12 @@ const BornSpec = ({ numberForm, status, info }: any) => {
           }
           if (!values.dateBorn) {
             errors.dateBorn = "Обязательно к заполнению";
+          } else {
+            const start_date = new LocalDate.parse(values.dateBorn);
+
+            if (JSJoda.ChronoUnit.DAYS.between(start_date, LocalDate.now()) < 0) {
+              errors.dateBorn = "Неверная дата";
+            }
           }
           if (!values.FIO) {
             errors.FIO = "Обязательно к заполнению";
@@ -53,15 +69,10 @@ const BornSpec = ({ numberForm, status, info }: any) => {
 
           return errors;
         }}
-        onSubmit={(values, { setSubmitting, setFieldValue }) => {
-          status(numberForm);
-
+        onSubmit={async (values, { setSubmitting, setFieldValue }) => {
           let { name } = fileUpload;
-          const randId = Math.floor(Math.random() * (99999999 - 10000000) + 10000000);
-          
-          UploadImg({ fileUpload, uid });
 
-          info({ name, ...values });
+          await UploadImg({ fileUpload, uid, status, numberForm, info, values, setErrorFile, setDownloadFileCheck });
         }}
       >
         {({ isSubmitting }) => (
@@ -89,21 +100,24 @@ const BornSpec = ({ numberForm, status, info }: any) => {
                     <Field type="date" name="dateBorn" id={id + "dateBorn"} />
                     <ErrorMessage name="dateBorn" component="div" />
                   </InputBlockDiv>
+
                   <InputBlockDiv statement>
                     <label htmlFor={id + "FIO"}>Фамилия Имя Отчество</label>
                     <Field type="text" name="FIO" id={id + "FIO"} placeholder="ФИО" />
                     <ErrorMessage name="FIO" component="div" />
                   </InputBlockDiv>
                   <InputBlockDiv statement>
-                    <label htmlFor={id + "fileBorn"}>Свидетельство рождения ребенка</label>
+                    <label htmlFor={id + "dfh"}>Свидетельство рождения ребенка (.pdf)</label>
                     <Field
                       type="file"
-                      name="fileBorn"
-                      id={id + "fileBorn"}
-                      placeholder="ФИО"
+                      name="gggg"
+                      id={id + "dfh"}
+                      accept="application/pdf"
                       onChange={(e: any) => setFileUpload(e.target.files[0])}
                     />
-                    <ErrorMessage name="fileBorn" component="div" />
+                    <ErrorFile display={errorFile}>Неверный формат файла</ErrorFile>
+                    <DownloadFileCheck display={downloadFileCheck}>Загрузка, подождите...</DownloadFileCheck>
+                    <ErrorMessage name="FIO" component="div" />
                   </InputBlockDiv>
                   <h2>Свидетельство об установлении отцовства</h2>
                   <InputBlockDiv statement>

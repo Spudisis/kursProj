@@ -24,7 +24,8 @@ const Header = () => {
     if (
       (location.pathname === "/kursProj/profile" ||
         location.pathname === "/kursProj/statement" ||
-        location.pathname === "/kursProj/profile/changeInfo") &&
+        location.pathname === "/kursProj/profile/changeInfo" ||
+        location.pathname === "/kursProj/profile/pay:id") &&
       !user
     ) {
       navigation("/kursProj/authorization");

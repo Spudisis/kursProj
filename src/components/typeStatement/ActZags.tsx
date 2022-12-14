@@ -11,6 +11,8 @@ import { Button } from "./button";
 
 const ActZags = ({ numberForm, status, info, type, necessarily }: any) => {
   const id = React.useId();
+  const JSJoda = require("@js-joda/core");
+  let LocalDate = JSJoda.LocalDate;
 
   return (
     <>
@@ -28,6 +30,12 @@ const ActZags = ({ numberForm, status, info, type, necessarily }: any) => {
             }
             if (!values.marriedDate) {
               errors.marriedDate = "Обязательно к заполнению";
+            } else {
+              const start_date = new LocalDate.parse(values.marriedDate);
+
+              if (JSJoda.ChronoUnit.DAYS.between(start_date, LocalDate.now()) < 0) {
+                errors.marriedDate = "Неверная дата";
+              }
             }
             if (!values.marriedNamePlace) {
               errors.marriedNamePlace = "Обязательно к заполнению";

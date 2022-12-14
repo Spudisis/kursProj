@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://Spudisis.github.io/kursProj/",
   "dependencies": {
+    "@js-joda/core": "^5.4.2",
     "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

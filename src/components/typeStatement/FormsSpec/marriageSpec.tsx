@@ -13,8 +13,8 @@ const MarriageSpec = ({ status, info, numberForm }: any) => {
     <>
       <Formik
         initialValues={{
-          lastDocM: "",
-          lastDocW: "",
+          lastDocM: "Отсутствует",
+          lastDocW: "Отсутствует",
           familyM: "",
           familyW: "",
         }}

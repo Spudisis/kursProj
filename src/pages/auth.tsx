@@ -50,10 +50,8 @@ const Auth = () => {
 
   React.useEffect(() => {
     if (userLog?.user.uid) {
-      console.log(userLog.user.uid);
       dispath(setPerson(userLog.user.uid));
     } else if (userReg?.user.uid) {
-      console.log(userReg.user.uid);
       dispath(setPerson(userReg.user.uid));
     }
     if (userLog || userReg) {
@@ -66,7 +64,7 @@ const Auth = () => {
   }, [typeAuth]);
 
   return (
-    <Window bgc height={"90vh"} justify="center" align="center">
+    <Window bgc height="90vh" justify="center" align="center">
       <Root auth>
         <Root justify="center" align="center" height="auto">
           <img src={logo} alt="NN" />

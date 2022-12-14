@@ -5,21 +5,22 @@ import { FormBlock } from "../../componentStyled/Form/Form";
 import { Window } from "../../componentStyled/window";
 import { InputBlockDiv } from "../../componentStyled/Form/InputBlock";
 import { ColumnBlock } from "../../componentStyled/Form/column";
-import { BlockButtons } from "../../componentStyled/Form/blockButtons";
-import { ButtonGeneral } from "../../componentStyled/button";
 import { Button } from "./button";
 const PassportInfo = ({ statement, numberForm, status, info, necessarily }: any) => {
   const id = React.useId();
+  const JSJoda = require("@js-joda/core");
+  let LocalDate = JSJoda.LocalDate;
+
   return (
     <>
       <Formik
         initialValues={{
-          nameDocM: "",
+          nameDocM: "Паспорт РФ",
           serPasM: "",
           numPasM: "",
           orgPasM: "",
           datePasM: "",
-          nameDocW: "",
+          nameDocW: "Паспорт РФ",
           serPasW: "",
           numPasW: "",
           orgPasW: "",
@@ -47,6 +48,12 @@ const PassportInfo = ({ statement, numberForm, status, info, necessarily }: any)
             }
             if (!values.datePasM) {
               errors.datePasM = "Обязательное поле";
+            } else {
+              const start_date = new LocalDate.parse(values.datePasM);
+
+              if (JSJoda.ChronoUnit.DAYS.between(start_date, LocalDate.now()) < 0) {
+                errors.datePasM = "Неверная дата";
+              }
             }
           }
 
@@ -68,6 +75,12 @@ const PassportInfo = ({ statement, numberForm, status, info, necessarily }: any)
           }
           if (!values.datePasW) {
             errors.datePasW = "Обязательное поле";
+          } else {
+            const start_date = new LocalDate.parse(values.datePasW);
+
+            if (JSJoda.ChronoUnit.DAYS.between(start_date, LocalDate.now()) < 0) {
+              errors.datePasW = "Неверная дата";
+            }
           }
 
           return errors;
@@ -87,7 +100,13 @@ const PassportInfo = ({ statement, numberForm, status, info, necessarily }: any)
                   <Window height="auto" justify="stretch" direction="column" width="400px">
                     <InputBlockDiv statement>
                       <label htmlFor={id + "nameDocM"}>Наименование документа</label>
-                      <Field type="text" name="nameDocM" id={id + "nameDocM"} placeholder="Документ" />
+                      <Field
+                        type="text"
+                        name="nameDocM"
+                        values={"Паспорт РФ"}
+                        id={id + "nameDocM"}
+                        placeholder="Документ"
+                      />
                       <ErrorMessage name="nameDocM" component="div" />
                     </InputBlockDiv>
 
@@ -119,7 +138,13 @@ const PassportInfo = ({ statement, numberForm, status, info, necessarily }: any)
                   <Window height="auto" justify="stretch" direction="column" width="400px">
                     <InputBlockDiv statement>
                       <label htmlFor={id + "nameDocW"}>Наименование документа</label>
-                      <Field type="text" name="nameDocW" id={id + "nameDocW"} placeholder="Документ" />
+                      <Field
+                        type="text"
+                        name="nameDocW"
+                        values={"Паспорт РФ"}
+                        id={id + "nameDocW"}
+                        placeholder="Документ"
+                      />
                       <ErrorMessage name="nameDocW" component="div" />
                     </InputBlockDiv>
 

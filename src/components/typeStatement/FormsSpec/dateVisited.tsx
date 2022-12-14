@@ -8,6 +8,9 @@ import { InputBlockDiv } from "../../../componentStyled/Form/InputBlock";
 
 const DateVisited = ({ numberForm, status, info, setEnd }: any) => {
   const id = React.useId();
+  const JSJoda = require("@js-joda/core");
+  let LocalDate = JSJoda.LocalDate;
+
   return (
     <>
       <Formik
@@ -18,6 +21,12 @@ const DateVisited = ({ numberForm, status, info, setEnd }: any) => {
           const errors: any = {};
           if (!values.dateVisited) {
             errors.dateVisited = "Обязательное поле";
+          } else {
+            const start_date = new LocalDate.parse(values.dateVisited);
+
+            if (JSJoda.ChronoUnit.DAYS.between(start_date, LocalDate.now()) > -3) {
+              errors.dateVisited = "Неверная дата";
+            }
           }
           return errors;
         }}

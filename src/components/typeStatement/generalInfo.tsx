@@ -11,7 +11,9 @@ import { Button } from "./button";
 
 const GeneralInfo = ({ statement, numberForm, status, info, necessarily }: any) => {
   const id = React.useId();
-  let values = {};
+
+  const JSJoda = require("@js-joda/core");
+  let LocalDate = JSJoda.LocalDate;
 
   return (
     <>
@@ -20,13 +22,13 @@ const GeneralInfo = ({ statement, numberForm, status, info, necessarily }: any) 
           fioM: "",
           birthdayM: "",
           birthdayPlaceM: "",
-          nationalityM: "",
+          nationalityM: "Российское",
           nationalM: "",
           placeLiveM: "",
           fioW: "",
           birthdayW: "",
           birthdayPlaceW: "",
-          nationalityW: "",
+          nationalityW: "Российское",
           nationalW: "",
           placeLiveW: "",
         }}
@@ -39,6 +41,12 @@ const GeneralInfo = ({ statement, numberForm, status, info, necessarily }: any) 
             }
             if (!values.birthdayM) {
               errors.birthdayM = "Обязательное поле";
+            } else {
+              const start_date = new LocalDate.parse(values.birthdayM);
+
+              if (JSJoda.ChronoUnit.DAYS.between(start_date, LocalDate.now()) < 0) {
+                errors.birthdayM = "Неверная дата";
+              }
             }
             if (!values.birthdayPlaceM) {
               errors.birthdayPlaceM = "Обязательное поле";
@@ -57,6 +65,12 @@ const GeneralInfo = ({ statement, numberForm, status, info, necessarily }: any) 
           }
           if (!values.birthdayW) {
             errors.birthdayW = "Обязательное поле";
+          } else {
+            const start_date = new LocalDate.parse(values.birthdayW);
+
+            if (JSJoda.ChronoUnit.DAYS.between(start_date, LocalDate.now()) < 0) {
+              errors.birthdayW = "Неверная дата";
+            }
           }
           if (!values.nationalityW) {
             errors.nationalityW = "Обязательное поле";
@@ -97,7 +111,13 @@ const GeneralInfo = ({ statement, numberForm, status, info, necessarily }: any) 
                   </InputBlockDiv>
                   <InputBlockDiv statement>
                     <label htmlFor={id + "nationalityM"}>Гражданство</label>
-                    <Field type="text" name="nationalityM" id={id + "nationalityM"} placeholder="Гражданство" />
+                    <Field
+                      type="text"
+                      values={"Российское"}
+                      name="nationalityM"
+                      id={id + "nationalityM"}
+                      placeholder="Гражданство"
+                    />
                     <ErrorMessage name="nationalityM" component="div" />
                   </InputBlockDiv>
                   <InputBlockDiv statement>
