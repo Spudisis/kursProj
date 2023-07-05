@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import App from "./App";
 import { store } from "./store/store";
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 const container = document.getElementById("root")!;
 const root = createRoot(container);
 
@@ -100,10 +100,10 @@ select {
 `;
 
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <Global />
-      <App />
-    </Provider>
-  </React.StrictMode>
+	<React.StrictMode>
+		<Provider store={store}>
+			<Global />
+			<App />
+		</Provider>
+	</React.StrictMode>
 );
