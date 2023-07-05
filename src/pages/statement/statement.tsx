@@ -8,10 +8,10 @@ import Divorce from "./divorce/divorce";
 import { Death } from "./death/death";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/config";
-import { getStatusSite, getUid } from "../../redux/slices/slice";
+import { getStatusSite, getUid } from '../../store/slices/slice'
 import { useSelector } from "react-redux";
-import { useAppDispatch } from "../../redux/store";
-import { getdata, setData } from "../../redux/slices/getData";
+import { useAppDispatch } from "../../store/store";
+import { getdata, setData } from "../../store/slices/getData";
 import { addStatement } from "../../firebase/addStatement";
 
 export const Statement = () => {

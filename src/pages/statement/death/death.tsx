@@ -5,7 +5,7 @@ import DeathSpec from "../../../components/typeStatement/FormsSpec/deathSpec";
 import GeneralInfo from "../../../components/typeStatement/generalInfo";
 import PassportInfo from "../../../components/typeStatement/passportInfo";
 
-import { uid } from "../../../redux/slices/types";
+import { uid } from "../../../store/slices/types";
 import s from "../marriage/marriage.module.css";
 
 export const Death = ({ uid, setTypeStatement, setDataObj }: uid) => {

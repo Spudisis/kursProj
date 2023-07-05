@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 import { useSelector } from "react-redux";
-import { getUid } from "../../../redux/slices/slice";
+import { getUid } from "../../../store/slices/slice";
 import { UploadImg } from "../../../firebase/addFile";
 
 import { FormBlock } from "../../../componentStyled/Form/Form";

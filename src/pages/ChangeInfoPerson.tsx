@@ -5,8 +5,8 @@ import { ButtonGeneral } from "../componentStyled/button";
 import { InputBlockDiv } from "../componentStyled/Form/InputBlock";
 import { Window } from "../componentStyled/window";
 import { auth } from "../firebase/config";
-import { setEmailUser } from "../redux/slices/slice";
-import { useAppDispatch } from "../redux/store";
+import { setEmailUser } from "../store/slices/slice";
+import { useAppDispatch } from "../store/store";
 
 const BlockInfo = styled.div`
   display: flex;

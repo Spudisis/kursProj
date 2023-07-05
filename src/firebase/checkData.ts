@@ -1,7 +1,7 @@
-import getData, { setData } from "../redux/slices/getData";
-import { setStatusSite } from "../redux/slices/slice";
-import { setcheckStatementsUsers, setconfirmStatementsUsers, setDataUsers } from "../redux/slices/superUser";
-import { useAppDispatch } from "../redux/store";
+import getData, { setData } from "../store/slices/getData";
+import { setStatusSite } from "../store/slices/slice";
+import { setcheckStatementsUsers, setconfirmStatementsUsers, setDataUsers } from "../store/slices/superUser";
+import { useAppDispatch } from "../store/store";
 import { addUserDoc } from "./addUserDoc";
 import { auth } from "./config";
 import { firestore } from "./config";

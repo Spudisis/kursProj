@@ -11,8 +11,8 @@ import {
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
-import { setPerson } from "../redux/slices/slice";
-import { useAppDispatch } from "../redux/store";
+import { setPerson } from "../store/slices/slice";
+import { useAppDispatch } from "../store/store";
 import { Window } from "../componentStyled/window";
 import { Root } from "../componentStyled/root";
 import { AuthButtonSwap } from "../componentStyled/auth/authChange";

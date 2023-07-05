@@ -3,10 +3,10 @@ import { Footer, Header } from "./components/index";
 import { Main, Statement, Auth, Profile, Pay, ChangeInfoPerson, NotFound } from "./pages/index";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { checkData } from "./firebase/checkData";
-import { useAppDispatch } from "./redux/store";
+import { useAppDispatch } from "./store/store";
 import { auth } from "./firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { getUid, setEmailUser, setPerson } from "./redux/slices/slice";
+import { getUid, setEmailUser, setPerson } from "./store/slices/slice";
 import { useSelector } from "react-redux";
 import { Window, MainDiv } from "./componentStyled/index";
 

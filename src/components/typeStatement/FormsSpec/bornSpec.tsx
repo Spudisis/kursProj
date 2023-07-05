@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 
 import { UploadImg } from "../../../firebase/addFile";
 import { useSelector } from "react-redux";
-import { getUid } from "../../../redux/slices/slice";
+import { getUid } from "../../../store/slices/slice";
 import { v4 as uuidv4 } from "uuid";
 import { FormBlock } from "../../../componentStyled/Form/Form";
 import { Window } from "../../../componentStyled/window";

@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import s from "./profile.module.css";
-import { getdataUsers } from "../../redux/slices/superUser";
+import { getdataUsers } from "../../store/slices/superUser";
 import { StatementProfile } from "./statement";
 import { Window } from "../../componentStyled/window";
 import { ButtonGeneral } from "../../componentStyled/button";

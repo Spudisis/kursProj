@@ -7,7 +7,7 @@ import RedirectProfile from "../../../components/redirectProfile";
 import { ActZags } from "../../../components/typeStatement/ActZags";
 import BornSpec from "../../../components/typeStatement/FormsSpec/bornSpec";
 
-import { uid } from "../../../redux/slices/types";
+import { uid } from "../../../store/slices/types";
 import DateVisited from "../../../components/typeStatement/FormsSpec/dateVisited";
 const Born = ({ uid, setTypeStatement, setDataObj }: uid) => {
   const [statusConfirm, setStatusConfirm] = React.useState(0); //какую форму показывать

@@ -7,10 +7,10 @@ import { ButtonGeneral } from "../../componentStyled/button";
 import { changeStatementStatus } from "../../firebase/changeStatusStatement";
 import { storage } from "../../firebase/config";
 
-import { deleteData, getdata, viewData, viewSet } from "../../redux/slices/getData";
-import { getStatusSite, getUid } from "../../redux/slices/slice";
-import { changeDataUsers } from "../../redux/slices/superUser";
-import { useAppDispatch } from "../../redux/store";
+import { deleteData, getdata, viewData, viewSet } from "../../store/slices/getData";
+import { getStatusSite, getUid } from "../../store/slices/slice";
+import { changeDataUsers } from "../../store/slices/superUser";
+import { useAppDispatch } from "../../store/store";
 
 const Item = styled.div`
   padding: 10px;

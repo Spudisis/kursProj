@@ -6,7 +6,7 @@ import RedirectProfile from "../../../components/redirectProfile";
 import { ActZags } from "../../../components/typeStatement/ActZags";
 import { DivorceSpec } from "../../../components/typeStatement/FormsSpec/divorce";
 
-import { uid } from "../../../redux/slices/types";
+import { uid } from "../../../store/slices/types";
 import { useSelector } from "react-redux";
 import DateVisited from "../../../components/typeStatement/FormsSpec/dateVisited";
 

@@ -8,11 +8,11 @@ import { User } from "../components/profile/user";
 import { ButtonGeneral } from "../componentStyled/button";
 import { Window } from "../componentStyled/window";
 import { auth } from "../firebase/config";
-import { clearData, getdata } from "../redux/slices/getData";
-import { clearEmailUser, clearId, clearStatusSite } from "../redux/slices/slice";
-import { getStatusSite } from "../redux/slices/slice";
-import { clearDataUsers } from "../redux/slices/superUser";
-import { useAppDispatch } from "../redux/store";
+import { clearData, getdata } from "../store/slices/getData";
+import { clearEmailUser, clearId, clearStatusSite } from "../store/slices/slice";
+import { getStatusSite } from "../store/slices/slice";
+import { clearDataUsers } from "../store/slices/superUser";
+import { useAppDispatch } from "../store/store";
 import { View } from "./view";
 
 const PageInfo = styled.div`

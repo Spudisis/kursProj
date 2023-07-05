@@ -7,7 +7,7 @@ import MarriageSpec from "../../../components/typeStatement/FormsSpec/marriageSp
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebase/config";
-import { uid } from "../../../redux/slices/types";
+import { uid } from "../../../store/slices/types";
 import DateVisited from "../../../components/typeStatement/FormsSpec/dateVisited";
 
 const MarriageStatement = ({ uid, setTypeStatement, setDataObj }: uid) => {
