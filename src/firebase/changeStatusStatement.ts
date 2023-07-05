@@ -1,11 +1,7 @@
-import { useSelector } from "react-redux";
-import { getStatusSite } from "../redux/slices/slice";
 import { addStatement } from "./addStatement";
-import { auth } from "./config";
 import { firestore } from "./config";
 export const changeStatementStatus = async (uid: any, statusSite: boolean, id: number, status: string) => {
   const ref = firestore.collection("usersStatement").doc(uid);
-
   const mas: any[] = [];
   if (statusSite) {
     await ref.get().then(function (querySnapshot) {
@@ -24,7 +20,7 @@ export const changeStatementStatus = async (uid: any, statusSite: boolean, id: n
         }
       }
     });
-    console.log("изменил");
+    console.log("change");
     addStatement(uid, mas, statusSite);
   }
 };

@@ -25,13 +25,8 @@ export const Pay = () => {
   const { id } = useParams();
   const idForm = React.useId();
   const dispatch = useAppDispatch();
-  const [numberCheck, setNumber] = React.useState("");
-  const [cvvCheck, setCvv] = React.useState("");
+
   const [checkData, setCheckData] = React.useState("loading");
-  const [error1, setError1] = React.useState("");
-  const [error2, setError2] = React.useState("");
-  const [error3, setError3] = React.useState("");
-  const [error4, setError4] = React.useState("");
 
   const redirect = useNavigate();
   const { data } = useSelector(getdata);
@@ -100,54 +95,29 @@ export const Pay = () => {
                     <Window height="auto" justify="space-between">
                       <img src={cart} alt="cart" />
                       <ColumnBlock margin="0px">
-                        <InputBlockDiv border={error1} pay width="200px">
+                        <InputBlockDiv pay width="200px">
                           <label htmlFor={idForm + "Number"}>Номер</label>
                           <Field
                             type="number"
                             name="Number"
-                            // onChange={(n: any) => {
-                            //   if (/^[\d-]*$/.test(n.target.value) && n.target.value.length !== 20) {
-                            //     setError1("");
-                            //     if (
-                            //       n.target.value.length === 4 ||
-                            //       n.target.value.length === 9 ||
-                            //       n.target.value.length === 14
-                            //     ) {
-                            //       return setNumber(n.target.value + "-");
-                            //     }
-                            //     setNumber(n.target.value);
-                            //   }
-                            // }}
-                            // value={numberCheck}
                             id={idForm + "marriedAct"}
                             placeholder="****-****-****-****"
                           />
                           <ErrorMessage name="Number" component="div" />
                         </InputBlockDiv>
-                        <InputBlockDiv border={error2} pay width="200px">
+                        <InputBlockDiv pay width="200px">
                           <label htmlFor={idForm + "date"}>ММ/ДД</label>
                           <Field type="number" name="date" id={idForm + "date"} placeholder="**/**" />
                           <ErrorMessage name="date" component="div" />
                         </InputBlockDiv>
                       </ColumnBlock>
                       <ColumnBlock margin="0px">
-                        <InputBlockDiv border={error3} pay width="200px">
+                        <InputBlockDiv pay width="200px">
                           <label htmlFor={idForm + "cvv"}>CVV</label>
-                          <Field
-                            type="number"
-                            // onChange={(n: any) => {
-                            //   if (n.target.value.length !== 4) {
-                            //     setCvv(n.target.value);
-                            //   }
-                            // }}
-                            name="cvv"
-                            // value={cvvCheck}
-                            id={idForm + "cvv"}
-                            placeholder="***"
-                          />
+                          <Field type="number" name="cvv" id={idForm + "cvv"} placeholder="***" />
                           <ErrorMessage name="cvv" component="div" />
                         </InputBlockDiv>
-                        <InputBlockDiv border={error4} pay width="200px">
+                        <InputBlockDiv pay width="200px">
                           <label htmlFor={idForm + "person"}>Имя</label>
                           <Field type="text" name="person" id={idForm + "person"} placeholder="Cart Holder" />
                           <ErrorMessage name="person" component="div" />

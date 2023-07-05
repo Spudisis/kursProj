@@ -1,23 +1,15 @@
 import React from "react";
-import Footer from "./components/footer";
-import Header from "./components/header";
-import Main from "./pages/general";
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from "react-router-dom";
-import Statement from "./pages/statement/statement";
-import Auth from "./pages/auth";
-import { Profile } from "./pages/profile";
+import { Footer, Header } from "./components/index";
+import { Main, Statement, Auth, Profile, Pay, ChangeInfoPerson, NotFound } from "./pages/index";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { checkData } from "./firebase/checkData";
 import { useAppDispatch } from "./redux/store";
 import { auth } from "./firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getUid, setEmailUser, setPerson } from "./redux/slices/slice";
 import { useSelector } from "react-redux";
-import { NotFound } from "./pages/NotFound";
-import { ChangeInfoPerson } from "./pages/ChangeInfoPerson";
-import { Window } from "./componentStyled/window";
-import styled from "styled-components";
-import { MainDiv } from "./componentStyled/mainDiv";
-import { Pay } from "./pages/pay";
+import { Window, MainDiv } from "./componentStyled/index";
+
 function App() {
   const dispatch = useAppDispatch();
 

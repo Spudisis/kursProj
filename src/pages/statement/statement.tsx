@@ -14,7 +14,7 @@ import { useAppDispatch } from "../../redux/store";
 import { getdata, setData } from "../../redux/slices/getData";
 import { addStatement } from "../../firebase/addStatement";
 
-const Statement = () => {
+export const Statement = () => {
   const { uid } = useSelector(getUid);
   const { data } = useSelector(getdata);
   const { statusSite } = useSelector(getStatusSite);
@@ -92,5 +92,3 @@ const Statement = () => {
     </div>
   );
 };
-
-export default Statement;

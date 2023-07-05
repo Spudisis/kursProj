@@ -15,7 +15,7 @@ const IconHref = styled.a`
   width: 50px;
   height: 40px;
 `;
-const Footer = () => {
+export const Footer = () => {
   return (
     <FooterBlock>
       <MainDiv>
@@ -38,5 +38,3 @@ const Footer = () => {
     </FooterBlock>
   );
 };
-
-export default Footer;

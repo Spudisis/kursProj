@@ -1,10 +1,8 @@
 import { signOut } from "firebase/auth";
-import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Loader } from "../components/loader/loader";
-import { StatementProfile } from "../components/profile/statement";
 import { SuperUser } from "../components/profile/superUser";
 import { User } from "../components/profile/user";
 import { ButtonGeneral } from "../componentStyled/button";

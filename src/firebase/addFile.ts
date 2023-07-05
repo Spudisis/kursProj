@@ -1,7 +1,5 @@
-import React from "react";
-import { useUploadFile } from "react-firebase-hooks/storage";
 import { storage } from "./config";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes } from "firebase/storage";
 
 export const UploadImg = async ({
   fileUpload,
@@ -22,11 +20,9 @@ export const UploadImg = async ({
     setErrorFile("none");
     setDownloadFileCheck("block");
     const imageRef = ref(storage, `docs/${uid}/${name}`);
-    await uploadBytes(imageRef, fileUpload).then((snaphsot) => {});
+    await uploadBytes(imageRef, fileUpload).then(() => {});
     status(numberForm);
-    console.log("сработал стейт загрузки");
     info({ name, ...values });
-    console.log("Файл загрузился");
   } else {
     setDownloadFileCheck("none");
     setErrorFile("block");

@@ -19,7 +19,7 @@ import { AuthButtonSwap } from "../componentStyled/auth/authChange";
 import { ButtonsSwap } from "../componentStyled/auth/authButtonsSpaw";
 import { AuthWarningSwap } from "../componentStyled/auth/warning";
 
-const Auth = () => {
+export const Auth = () => {
   const dispath = useAppDispatch();
   const [typeAuth, settypeAuth] = React.useState(false);
   const [styleWarning, setStyleWarning] = React.useState(false);
@@ -90,5 +90,3 @@ const Auth = () => {
     </Window>
   );
 };
-
-export default Auth;

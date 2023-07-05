@@ -16,7 +16,7 @@ export type PopupClick = MouseEvent & {
   path: Node[];
 };
 
-const Header = () => {
+export const Header = () => {
   const navigation = useNavigate();
   const location = useLocation();
   const [user, loading, error] = useAuthState(auth as any);
@@ -77,5 +77,3 @@ const Header = () => {
     </HeaderBlock>
   );
 };
-
-export default Header;

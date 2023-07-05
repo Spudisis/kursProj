@@ -3,7 +3,7 @@ import Banners from "../components/main/banners";
 import { UsefulLinks } from "../components/main/usefulLinks";
 import { Window } from "../componentStyled/window";
 
-const Main = () => {
+export const Main = () => {
   return (
     <Window justify="normal" height="90vh" direction="column">
       <section>
@@ -12,9 +12,6 @@ const Main = () => {
       <section>
         <Banners />
       </section>
-      <section>infa</section>
     </Window>
   );
 };
-
-export default Main;

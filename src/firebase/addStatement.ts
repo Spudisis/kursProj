@@ -1,6 +1,3 @@
-import { useSelector } from "react-redux";
-import { getStatusSite } from "../redux/slices/slice";
-import { auth } from "./config";
 import { firestore } from "./config";
 export const addStatement = async (uid: any, statement: any, status: boolean) => {
   const ref = firestore.collection("usersStatement").doc(uid);

@@ -1,7 +1,6 @@
 import { addData, setData } from "../redux/slices/getData";
 import { setStatusSite } from "../redux/slices/slice";
-import { useAppDispatch } from "../redux/store";
-import { auth } from "./config";
+
 import { firestore } from "./config";
 export const getDataDB = async (uid: string, dispatch: any) => {
   firestore
